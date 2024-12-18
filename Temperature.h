@@ -3,7 +3,7 @@
 * Date:    18/12/2024
 * Project Embarcatech - First activite in group
 *
-* File: Temperature.h
+* File: temperature.h
 */
 
 #ifndef TEMPERATURE_H
@@ -20,18 +20,18 @@ typedef enum
 return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit);
 
 // Converts Celsius to Kelvin
-return_code_temp_t celsius_to_kelvin(double celsius);
+return_code_temp_t celsius_to_kelvin(double celsius, double *kelvin);
 
 // Converts Fahrenheit to Celsius
-return_code_temp_t fahrenheit_to_celsius(double fahrenheit);
+return_code_temp_t fahrenheit_to_celsius(double fahrenheit, double *celsius);
 
 // Converts Fahrenheit to Kelvin
-return_code_temp_t fahrenheit_to_kelvin(double fahrenheit);
+return_code_temp_t fahrenheit_to_kelvin(double fahrenheit, double *kelvin);
 
 // Converts Kelvin to Celsius
-return_code_temp_t kelvin_to_celsius(double kelvin);
+return_code_temp_t kelvin_to_celsius(double kelvin, double *celsius);
 
 // Converts Kelvin to Fahrenheit
-return_code_temp_t kelvin_to_fahrenheit(double kelvin);
+return_code_temp_t kelvin_to_fahrenheit(double kelvin, double *fahrenheit);
 
 #endif // TEMPERATURE_H
