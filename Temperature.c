@@ -6,40 +6,47 @@
 * File: Temperature.c
 */
 
-#include "Temperature.h"
+#include <stdio.h>
+#include "temperature.h"
 
 // Converts Celsius to Fahrenheit
-double celsius_to_fahrenheit(double celsius)
+return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit)
 {
-    return 0.0;
+     if (celsius < -273.15) {
+        printf("Error: Temperature below absolute zero in Celsius.\n");
+        return CONVERSION_INVALID_VALUE;
+    }
+
+    *fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
+    return CONVERSION_OK;
 }
 
 // Converts Celsius to Kelvin
-double celsius_to_kelvin(double celsius)
+return_code_temp_t celsius_to_kelvin(double celsius)
 {
     return 0.0;
 }
 
 // Converts Fahrenheit to Celsius
-double fahrenheit_to_celsius(double fahrenheit)
+return_code_temp_t fahrenheit_to_celsius(double fahrenheit)
 {
     return 0.0;
 }
 
 // Converts Fahrenheit to Kelvin
-double fahrenheit_to_kelvin(double fahrenheit)
+return_code_temp_t fahrenheit_to_kelvin(double fahrenheit)
 {
     return 0.0;
 }
 
 // Converts Kelvin to Celsius
-double kelvin_to_celsius(double kelvin)
+return_code_temp_t kelvin_to_celsius(double kelvin)
 {
     return 0.0;
 }
 
 // Converts Kelvin to Fahrenheit
-double kelvin_to_fahrenheit(double kelvin)
+return_code_temp_t kelvin_to_fahrenheit(double kelvin)
 {
     return 0.0;
 }

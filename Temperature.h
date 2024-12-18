@@ -6,25 +6,32 @@
 * File: Temperature.h
 */
 
-#ifndef TEMPERATURE_CONVERSION_H
-#define TEMPERATURE_CONVERSION_H
+#ifndef TEMPERATURE_H
+#define TEMPERATURE_H
+
+typedef enum 
+{
+    CONVERSION_OK = 0x00,
+    CONVERSION_FAILED = 0x01,
+    CONVERSION_INVALID_VALUE = 0x02,
+} return_code_temp_t;
 
 // Converts Celsius to Fahrenheit
-double celsius_to_fahrenheit(double celsius);
+return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit);
 
 // Converts Celsius to Kelvin
-double celsius_to_kelvin(double celsius);
+return_code_temp_t celsius_to_kelvin(double celsius);
 
 // Converts Fahrenheit to Celsius
-double fahrenheit_to_celsius(double fahrenheit);
+return_code_temp_t fahrenheit_to_celsius(double fahrenheit);
 
 // Converts Fahrenheit to Kelvin
-double fahrenheit_to_kelvin(double fahrenheit);
+return_code_temp_t fahrenheit_to_kelvin(double fahrenheit);
 
 // Converts Kelvin to Celsius
-double kelvin_to_celsius(double kelvin);
+return_code_temp_t kelvin_to_celsius(double kelvin);
 
 // Converts Kelvin to Fahrenheit
-double kelvin_to_fahrenheit(double kelvin);
+return_code_temp_t kelvin_to_fahrenheit(double kelvin);
 
-#endif // TEMPERATURE_CONVERSION_H
+#endif // TEMPERATURE_H
