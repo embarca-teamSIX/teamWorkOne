@@ -31,5 +31,15 @@
         Presença apenas dos prototipos da funções. 
         EX:"return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit);";
 
+        MODELO:
+        [tipo de retorno: pode ser int ou uma struct] [nome da função]   ([parametros])
+       |0=operação bem sucedida                     | nome de preferencia| >>importante<<            |
+       |1=erro                                      | bem descritivo com |usar passagem por          |
+       |2= valor invalido de conversão              | uso preferencial de| referencia!!              |
+       |                                            | travessão "_"      |o retorno da operação      |
+       |                                            | para confecção dos |deve ser num ponteiro      |
+       |                                            | nomes              |mesmo que a função         |
+       |                                            |                    |use outros parametros      |
+       |                                            |                    |por motivos discricionarios|
     Modulos
         No modulo deve conter os escopos da funções;
