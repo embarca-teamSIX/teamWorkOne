@@ -7,7 +7,7 @@
 */
 
 #include <stdio.h>
-#include "includes/temperature.h"
+#include "temperature.h"
 
 // Converts Celsius to Fahrenheit
 return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit)
