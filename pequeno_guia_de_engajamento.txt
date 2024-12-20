@@ -1,0 +1,45 @@
+-->>uso e aplicação das libs pra esse projeto<<---
+    Estrutura do repositorio
+        raiz/
+            |  -> src/
+            |       |->core/
+            |       |      |->/*fica aqui o arquivo principal da execução,*/
+            |       |->modules/
+            |               |->/*a serem postos aqui os modulos para compilação contendo as funcs*/
+            | 
+            |   -> includes/
+            |           |->/*a serem postos aqui os arquivos de bibliotecas .h*/
+            |    -> build/
+            |           |->/*target folder para compilação do cmake*/
+            |    ->cmake
+            |    ->.gitignore
+            |    ->license
+
+
+    Biblioteca
+        Uso de "#ifndef [nome da biblioteca]" e "#endif" no final por motivos de: //a ser dito
+        
+        Criação e uso de typedef especifico para uma struct padronizada para retorno de status 
+        de execução da função a ser operada. Ex:  "CONVERSION_OK = 0x00" esse atributo em 
+        uma struct é usado como retorno da função quando o status for 0: funcionamento ok;
+
+        Retorno de funções devera sempre ser os definidos na struct. Os dados a serem 
+        operacionalizados deverão ser passados por referencia;
+
+        Uso do mesmo nome do modulo ao definir o arquivo lib .h
+
+        Presença apenas dos prototipos da funções. 
+        EX:"return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit);";
+
+        MODELO:
+        [tipo de retorno: pode ser int ou uma struct] [nome da função]   ([parametros])
+       |0=operação bem sucedida                     | nome de preferencia| >>importante<<            |
+       |1=erro                                      | bem descritivo com |usar passagem por          |
+       |2= valor invalido de conversão              | uso preferencial de| referencia!!              |
+       |                                            | travessão "_"      |o retorno da operação      |
+       |                                            | para confecção dos |deve ser num ponteiro      |
+       |                                            | nomes              |mesmo que a função         |
+       |                                            |                    |use outros parametros      |
+       |                                            |                    |por motivos discricionarios|
+    Modulos
+        No modulo deve conter os escopos da funções;

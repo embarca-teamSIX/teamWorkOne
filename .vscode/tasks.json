@@ -9,8 +9,9 @@
                 "-Wall",
                 "-Wextra",
                 "-g3",
-                "main.c",
-                "temperature.c",
+                "-Iincludes", // Adiciona o diretório 'includes' como um diretório de include
+                "src/core/main.c",
+                "src/modules/temperature.c",
                 "-o",
                 "output/main.exe"
             ],

@@ -1,0 +1,39 @@
+
+>>>>>Título: Programa Conversor de Unidades em Linguagem C<<<<<
+
+1. Unidades de comprimento (metro, centímetro, milímetro)
+                    ->__Deividson__
+2. Unidades de massa (quilograma, grama, tonelada)
+                    ->__Isadora__
+3. Unidades de volume (litro, mililitro, metros cúbicos)
+                    ->Thais Lima
+4. Unidades de temperatura (Celsius, Fahrenheit, Kelvin)
+                    ->__Jorge__
+5. Unidades de velocidade (km/h, m/s, mph)
+6. Watts (W), quilowatts (kW), cavalos-vapor (cv ou hp)
+                    ->__ARI__
+7. Unidades de área (metro quadrado, centímetro quadrado)
+8. Unidades de tempo (segundos, minutos, horas)
+                    ->__Ana Paula__
+9. Bits, bytes, kilobytes (KB), megabytes (MB), gigabytes (GB), terabytes (TB)
+                    ->__Pedro__
+10. Interface de usuário - 
+                    ->__Gleison__
+11. Testes e depuração
+
+
+
+
+>---------------------------<
+Lista com alguns comandos Git utéis para este projeto:
+1. git init - Inicializar repositório.
+2. git add . - Adicionar arquivos.
+3. git commit -m "mensagem" - Fazer commit.
+4. git branch nome - Criar branch.
+5. git checkout nome - Trocar de branch.
+6. git merge nome - Integrar mudanças.
+7. git push origin nome - Enviar mudanças para GitHub.
+8. git pull origin nome - Atualizar repositório local.
+
+---------------------------------
+
