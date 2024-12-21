@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "temperature.h": "c"
+        "temperature.h": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c"
     }
 }

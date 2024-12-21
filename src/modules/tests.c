@@ -5,8 +5,9 @@
 *
 * File: temperature.c
 */
-
+#include "tests.h"
 #include "temperature.h"
+#include "stdio.h"
 
 void tests_temperature_lib()
 {
