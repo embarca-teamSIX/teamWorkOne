@@ -8,4 +8,4 @@ project(MeuProjeto C)
 include_directories(includes)
 
 # Adiciona o executável
-add_executable(programa src/core/main.c src/modules/temperature.c)
+add_executable(programa src/core/main.c src/modules/temperature.c src/modules/tests.c)
