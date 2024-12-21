@@ -22,9 +22,21 @@ main/
 #include <unistd.h>
 
 #define OPCOES 10
-void protoOperacoes(int escolhaMenu)
+void protoOperacoes(int escolhaMenu)//0 to 9
 {
+        system("clear || cls");
 
+    switch (escolhaMenu)
+    {
+    case 9:
+        printf("sair");
+        break;
+    
+    default:
+    printf("escolha: %d", escolhaMenu);
+        break;
+    }
+    return;
 }
 char leOpcao()
 {
@@ -54,13 +66,13 @@ void exibeMenu(int iniceParaDestaque, char*menuExibicao[])
         (void)printf(" %s\n",menuExibicao[i]);
     }
     printf("\n\nUse as teclas >>W<< e >>S<< para navegar o menu");
-    return 0;
+    return ;
 }
 void menuLoop()
 {
     char*listaMenu[OPCOES]={"Unidades de comprimento","Unidades de massa","Unidades de volume","Unidades de temperatura","Unidades de velocidade","Unidades de Energia","Unidades de área","Unidades de tempo","Unidades de Armazenamento", "SAIR"};
     int escolhaMomento=0;
-    char leitura;
+    char leitura; 
 
     while(1)
     {
@@ -80,10 +92,12 @@ void menuLoop()
         case 'S':
             escolhaMomento=(escolhaMomento+1)%OPCOES;
             break;
-        case '\n':
+        case 13:
+        case 10:
             (void)protoOperacoes(escolhaMomento);//funcao void que recebe o valor da operacao e 
                                           //inicia a chamada das funções das operações
             break;
+        
         
         default:
             continue;
