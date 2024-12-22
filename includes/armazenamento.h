@@ -1,5 +1,5 @@
-#ifndef CONVERSOR_H
-#define CONVERSOR_H
+#ifndef ARMAZENAMENTO_H
+#define ARMAZENAMENTO_H
 
 typedef enum 
 {
