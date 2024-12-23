@@ -22,6 +22,67 @@ main/
 #include <unistd.h>
 
 #define OPCOES 10
+/**
+ * Nome: 
+ * 
+ * Descrição: e
+ * 
+ * Parametros: 
+ *          -
+ * 
+ * Retorno:
+ *          -
+ * 
+ */
+void lerDoTeclado()//função nificada para ler e retornar valores em 
+{
+    //todo
+}
+/**
+ * Nome: 
+ * 
+ * Descrição: e
+ * 
+ * Parametros: 
+ *          -
+ * 
+ * Retorno:
+ *          -
+ * 
+ */
+void exibeTela()//exibir a interação especifica para cada proto
+{
+    //todo
+}
+/**
+ * Nome: 
+ * 
+ * Descrição: e
+ * 
+ * Parametros: 
+ *          -
+ * 
+ * Retorno:
+ *          -
+ * 
+ */
+void menuProto()//em numero igual as opcoes com [nome da operação] e a ser chamada por protoOperacoes()
+{
+    //todo
+}
+/**
+ * Nome: protoOperacoes
+ * 
+ * Descrição: função que recebe o valor do indice da opção do menu e 
+ *            chama a tela subsequente
+ * 
+ * Parametros: 
+ *          -int escolhaMenu: inteiro que contem o indice 
+ * 
+ * Retorno:
+ *          -sem retorno
+ * 
+ */
 void protoOperacoes(int escolhaMenu)//0 to 9
 {
         system("clear || cls");
@@ -38,6 +99,18 @@ void protoOperacoes(int escolhaMenu)//0 to 9
     }
     return;
 }
+/**
+ * Nome: 
+ * 
+ * Descrição: e
+ * 
+ * Parametros: 
+ *          -
+ * 
+ * Retorno:
+ *          -
+ * 
+ */
 char leOpcao()
 {
 struct termios oldt, newt;
@@ -56,6 +129,19 @@ struct termios oldt, newt;
 
     return ch;
 }
+/**
+ * exibeMenu() -imprime em tela as strings de forma ordenada
+ * 
+ * Descrição: essa função exibe em tela de forma ordenada as strings do menu
+ * 
+ * Parametros: 
+ *          -int indiceParaDestaque: que retorna o indice atual do apontador "><"
+ *          -char* menuExibicao: string com o textual do menu
+ * 
+ * Retorno:
+ *          -sem retorno
+ * 
+ */
 void exibeMenu(int iniceParaDestaque, char*menuExibicao[])
 {
     system("clear || cls");
@@ -68,6 +154,18 @@ void exibeMenu(int iniceParaDestaque, char*menuExibicao[])
     printf("\n\nUse as teclas >>W<< e >>S<< para navegar o menu");
     return ;
 }
+/**
+ * menuLoop() -menu em loop 
+ * 
+ * Descrição: essa função fica rodando em loop para exibir em tela e processar as entradas
+ * 
+ * Parametros: 
+ *          -nenhum
+ * 
+ * Retorno:
+ *          -sem retorno
+ * 
+ */
 void menuLoop()
 {
     char*listaMenu[OPCOES]={"Unidades de comprimento","Unidades de massa","Unidades de volume","Unidades de temperatura","Unidades de velocidade","Unidades de Energia","Unidades de área","Unidades de tempo","Unidades de Armazenamento", "SAIR"};
@@ -92,8 +190,8 @@ void menuLoop()
         case 'S':
             escolhaMomento=(escolhaMomento+1)%OPCOES;
             break;
-        case 13:
-        case 10:
+        case 'd':
+        case 'D':
             (void)protoOperacoes(escolhaMomento);//funcao void que recebe o valor da operacao e 
                                           //inicia a chamada das funções das operações
             break;
