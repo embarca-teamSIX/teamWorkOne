@@ -3,9 +3,8 @@
 #include "conversor.h"
 
 int main() {
-
     system("chcp 65001>nul");
-    
+
     double valor = 0.0;
     int opcao;
 
