@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "conversor.h"
 
 int main() {
@@ -20,16 +21,20 @@ int main() {
 
     switch (opcao) {
         case 1:
-            printf("Resultado: %.2f cm\n", metroParaCentimetro(valor));
+            metroParaCentimetro(&valor);
+            printf("Resultado: %.2f cm\n", valor);
             break;
         case 2:
-            printf("Resultado: %.2f mm\n", metroParaMilimetro(valor));
+            metroParaMilimetro(&valor);
+            printf("Resultado: %.2f mm\n", valor);
             break;
         case 3:
-            printf("Resultado: %.2f m\n", centimetroParaMetro(valor));
+            centimetroParaMetro(&valor);
+            printf("Resultado: %.2f m\n", valor);
             break;
         case 4:
-            printf("Resultado: %.2f m\n", milimetroParaMetro(valor));
+            milimetroParaMetro(&valor);
+            printf("Resultado: %.2f m\n", valor);
             break;
         default:
             printf("Opção inválida.\n");
