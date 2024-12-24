@@ -77,6 +77,19 @@ struct termios oldt, newt;
 
     ch = getchar(); // Lê o caractere sem esperar por "Enter"
     
+        if(ch =='\033'){
+            char seq[2];
+            read(STDIN_FILENO, &seq, 2); // Lê os dois próximos caracteres
+            if(seq[0]=='['){
+                switch(seq[1]){
+                    case 'A': ch ='w'; break;//cima
+                    case 'B': ch ='s'; break;//baixo
+                    case 'C': ch ='d'; break;//direita
+                    case 'D': ch ='a'; break;//esquerda
+                }
+            }
+        }
+
     // Restaura as configurações do terminal para o estado original
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
@@ -95,13 +108,13 @@ struct termios oldt, newt;
  *          -sem retorno
  * 
  */
-void exibeMenu(int iniceParaDestaque, char*menuExibicao[])
+void exibeMenu(int indiceParaDestaque, char*menuExibicao[])
 {
     system("clear || cls");
     (void)printf("---------MENU---------\n\n");
     for(int i =0;i<OPCOES; i++)
     {
-        if(i==iniceParaDestaque){printf("> %s <\n", menuExibicao[i]);continue;}
+        if(i==indiceParaDestaque){printf("> %s <\n", menuExibicao[i]);continue;}
         (void)printf(" %s\n",menuExibicao[i]);
     }
     printf("\n\nUse as teclas >>W<< e >>S<< para navegar o menu");
