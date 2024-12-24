@@ -1,17 +1,18 @@
 #include "conversor.h"
 
-double metroParaCentimetro(double metro) {
-    return metro * 100.0;
+// Implementação das funções
+void metroParaCentimetro(double *metro) {
+    *metro = (*metro) * 100.0;
 }
 
-double metroParaMilimetro(double metro) {
-    return metro * 1000.0;
+void metroParaMilimetro(double *metro) {
+    *metro = (*metro) * 1000.0;
 }
 
-double centimetroParaMetro(double centimetro) {
-    return centimetro / 100.0;
+void centimetroParaMetro(double *centimetro) {
+    *centimetro = (*centimetro) / 100.0;
 }
 
-double milimetroParaMetro(double milimetro) {
-    return milimetro / 1000.0;
+void milimetroParaMetro(double *milimetro) {
+    *milimetro = (*milimetro) / 1000.0;
 }
