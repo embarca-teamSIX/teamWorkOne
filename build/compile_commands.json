@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/build",
+  "command": "/usr/bin/gcc -I\"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/includes\" -g -std=gnu99 -o CMakeFiles/MeuProjeto.dir/src/core/main.c.o -c \"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/core/main.c\"",
+  "file": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/core/main.c",
+  "output": "CMakeFiles/MeuProjeto.dir/src/core/main.c.o"
+},
+{
+  "directory": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/build",
+  "command": "/usr/bin/gcc -I\"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/includes\" -g -std=gnu99 -o CMakeFiles/MeuProjeto.dir/src/core/moduloOperacaoUm.c.o -c \"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/core/moduloOperacaoUm.c\"",
+  "file": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/core/moduloOperacaoUm.c",
+  "output": "CMakeFiles/MeuProjeto.dir/src/core/moduloOperacaoUm.c.o"
+},
+{
+  "directory": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/build",
+  "command": "/usr/bin/gcc -I\"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/includes\" -g -std=gnu99 -o CMakeFiles/MeuProjeto.dir/src/core/oldmain.c.o -c \"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/core/oldmain.c\"",
+  "file": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/core/oldmain.c",
+  "output": "CMakeFiles/MeuProjeto.dir/src/core/oldmain.c.o"
+},
+{
+  "directory": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/build",
+  "command": "/usr/bin/gcc -I\"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/includes\" -g -std=gnu99 -o CMakeFiles/MeuProjeto.dir/src/modules/conversaoescla.c.o -c \"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/modules/conversaoescla.c\"",
+  "file": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/modules/conversaoescla.c",
+  "output": "CMakeFiles/MeuProjeto.dir/src/modules/conversaoescla.c.o"
+},
+{
+  "directory": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/build",
+  "command": "/usr/bin/gcc -I\"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/includes\" -g -std=gnu99 -o CMakeFiles/MeuProjeto.dir/src/modules/mass_conversion.c.o -c \"/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/modules/mass_conversion.c\"",
+  "file": "/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/src/modules/mass_conversion.c",
+  "output": "CMakeFiles/MeuProjeto.dir/src/modules/mass_conversion.c.o"
+}
+]

@@ -26,7 +26,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/builds)
 # Adiciona os arquivos ao executável principal
 add_executable(
     MeuProjeto
-    ${CMAKE_SOURCE_DIR}/src/main.c
+    ${CMAKE_SOURCE_DIR}/src/core/main.c
     ${CORE_SOURCES}
     ${MODULE_SOURCES}
 )
