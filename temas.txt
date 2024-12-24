@@ -9,10 +9,10 @@
                     ->Thais Lima
 4. Unidades de temperatura (Celsius, Fahrenheit, Kelvin)
                     ->__Jorge__
-5. Unidades de velocidade (km/h, m/s, mph)
+5. Unidades de velocidade (km/h, m/s, mph) --vago
 6. Watts (W), quilowatts (kW), cavalos-vapor (cv ou hp)
                     ->__ARI__
-7. Unidades de área (metro quadrado, centímetro quadrado)
+7. Unidades de área (metro quadrado, centímetro quadrado)--vago
 8. Unidades de tempo (segundos, minutos, horas)
                     ->__Ana Paula__
 9. Bits, bytes, kilobytes (KB), megabytes (MB), gigabytes (GB), terabytes (TB)
