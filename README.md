@@ -1,11 +1,12 @@
 # teamWorkOne
 Projeto Conversor de Unidades
 
-## requisitos
+## Requisitos
 
-deve-se verificar se:
+Deve-se verificar se:
 - **CMake** (versão 3.10 ou posterior)
 - Compilador C (GCC)
+- Linux
 
 ### Instruções de instalação:
 
@@ -16,26 +17,26 @@ git clone https://github.com/embarca-teamSIX/teamWorkOne.git
 ```bash
 cd TEAMWORKONE
 ```
-2. **criar diretório para build**
+2. **Criar diretório para build**
 ```bash
 mkdir build
 ```
 ```bash
 cd build
 ```
-3. **gerar arquivos para compilação**
+3. **Gerar arquivos para compilação**
 
 Dentro do diretorio execute cmake para gerar arquivos para compilação
 ```bash
 cmake ..
 ```
-4. **compilar projeto**
+4. **Compilar projeto**
 
 Dentro da pasta cmake executar `make` para compilar
 ```bash
 make
 ```
-5. **executar o programam**
+5. **Executar o programam**
 
 Após compilar basta iniciar o arquivo gerado
 ```bash
