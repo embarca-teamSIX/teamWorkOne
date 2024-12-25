@@ -21,8 +21,81 @@ main/
 #include <termio.h>
 #include <unistd.h>
 
-#define OPCOES 6
+#define OPCOES 7
+#define LINHAS_TELA 30 // Número mínimo de linhas para todas as telas.
+#define COLUNAS_TELA 80 // Tamanho fixo para largura visual.
 
+void limpaTela() {
+    system("clear || cls");
+}
+void telaInicial()
+{   int altura = (int)(LINHAS_TELA * 0.6); // 60% da altura da tela para o triângulo
+
+    // Limpa a tela e imprime a parte superior
+    limpaTela();
+    printf("\n\n");
+    printf("%*sSUB GRUPO 6\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
+
+    // Desenha o triângulo invertido
+    for (int i = altura; i > 0; i--) {
+        limpaTela(); // Limpa a tela para atualização
+        printf("\n\n");
+        printf("%*sSUB GRUPO 6\n\n\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
+        
+        // Desenha a parte superior do triângulo
+        for (int linha = altura; linha > 0; linha--) {
+            int espacos = (COLUNAS_TELA - (linha * 2)) / 2;
+            printf("%*s", espacos, ""); // Alinha o triângulo no centro
+            
+            // Desenha as bordas do triângulo
+            if (linha == altura) {
+                for (int j = 0; j < linha * 2; j++) {
+                    printf("-"); // Usando traços para a base
+                }
+            } else {
+                printf("\\"); // Correção: Contra barra agora à esquerda
+                for (int j = 0; j < (linha * 2) - 2; j++) {
+                    printf(" "); // Espaço vazio dentro do triângulo
+                }
+                printf("/"); // Correção: Barra agora à direita
+            }
+            printf("\n");
+        }
+
+        // Exibe o texto "ILHEUS", "BA" e "2024" na parte inferior
+        for (int linha = altura + 1; linha < LINHAS_TELA - 3; linha++) {
+            printf("\n");
+        }
+        printf("%*sILHEUS\n", (COLUNAS_TELA / 10), "");
+        printf("%*sBA\n", (COLUNAS_TELA / 10), "");
+        printf("%*s2024\n", (COLUNAS_TELA / 10), "");
+
+        // Aguarda 1 segundo
+        usleep(1000);
+    }
+
+    sleep(2);// Aguarda 5 segundos antes de continuar
+   
+
+}
+void exibeMenu(int indiceParaDestaque, char*menuExibicao[])
+{
+   limpaTela();
+    printf("--------- MENU ---------\n");
+    for (int i = 0; i < LINHAS_TELA - 3; i++) {
+        if (i < OPCOES) {
+            if (i == indiceParaDestaque) {
+                printf("> %s <\n", menuExibicao[i]);
+            } else {
+                printf("  %s\n", menuExibicao[i]);
+            }
+        } else {
+            printf("\n");
+        }
+    }
+    printf("\nUse as teclas >>W<< para subir, >>S<< para descer, >>D<< para selecionar.\n");
+    printf("Pressione 'A' para sair.\n");
+}
 /**
  * Nome: protoOperacoes
  * 
@@ -38,32 +111,39 @@ main/
  */
 void protoOperacoes(int escolhaMenu)//0 to 9
 {
-        system("clear || cls");
+    limpaTela();
 
     switch (escolhaMenu)
     {
-    case 9:
-        printf("sair");
+        case 1:
+        //armazenamento
+        break;
+    case 2:
+        //energia
+        break;
+    case 3:
+        //volume
+        break;
+    case 4:
+        //massa
+        break;
+    case 5:
+        //temperatura
+        break;
+    case 6:
+        //comprimento
+        break;
+    case 7:
+        //sair
         break;
     
     default:
-    printf("escolha: %d", escolhaMenu);
+    //printf("escolha: %d", escolhaMenu);
         break;
     }
     return;
 }
-/**
- * Nome: 
- * 
- * Descrição: e
- * 
- * Parametros: 
- *          -
- * 
- * Retorno:
- *          -
- * 
- */
+
 char leOpcao()
 {
 struct termios oldt, newt;
@@ -108,18 +188,7 @@ struct termios oldt, newt;
  *          -sem retorno
  * 
  */
-void exibeMenu(int indiceParaDestaque, char*menuExibicao[])
-{
-    system("clear || cls");
-    (void)printf("---------MENU---------\n\n");
-    for(int i =0;i<OPCOES; i++)
-    {
-        if(i==indiceParaDestaque){printf("> %s <\n", menuExibicao[i]);continue;}
-        (void)printf(" %s\n",menuExibicao[i]);
-    }
-    printf("\n\nUse as teclas >>W<< e >>S<< para navegar o menu");
-    return ;
-}
+
 /**
  * menuLoop() -menu em loop 
  * 
@@ -134,7 +203,13 @@ void exibeMenu(int indiceParaDestaque, char*menuExibicao[])
  */
 void menuLoop()
 {
-    char*listaMenu[OPCOES]={"Unidades de comprimento","Unidades de massa","Unidades de volume","Unidades de temperatura","Unidades de velocidade","Unidades de Energia","Unidades de área","Unidades de tempo","Unidades de Armazenamento", "SAIR"};
+    char*listaMenu[OPCOES]={"Unidades de Armazenamento",
+                            "Unidades de Energia",
+                            "Unidades de volume",
+                            "Unidades de massa",
+                            "Unidades de temperatura",
+                            "Unidades de comprimento",
+                            "SAIR"};
     int escolhaMomento=0;
     char leitura; 
 
@@ -161,7 +236,6 @@ void menuLoop()
             (void)protoOperacoes(escolhaMomento);//funcao void que recebe o valor da operacao e 
                                           //inicia a chamada das funções das operações
             break;
-        
         
         default:
             continue;
