@@ -15,7 +15,8 @@ void limpaTela() {
 
 // Protótipos de funções
 char leOpcao();
-void exibeTelaOperacoes(int escolha, char *menuExibicao[], char *entrada, char *resultado);
+void exibeTelaSelecao(int escolha, char *menuExibicao[]);
+void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
 void protoOperacoes(int escolha);
 void menuProto();
 
@@ -25,14 +26,14 @@ int main() {
 }
 
 char leOpcao() {
-    struct termios oldt, newt;
+    struct termios oldt, newt;// Declara duas estruturas 'termios', que armazenam configurações do terminal.
     char ch;
 
     // Configuração do terminal para leitura de caracteres sem buffer.
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    tcgetattr(STDIN_FILENO, &oldt);// Pega as configurações atuais do terminal (stdin) e armazena em 'oldt'.
+    newt = oldt; // Copia as configurações atuais para 'newt', que será modificado.
+    newt.c_lflag &= ~(ICANON | ECHO);// Modifica a configuração de 'newt' para desabilitar o modo canônico (entrada linha por linha) e o eco (não mostrar o caractere digitado).
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);// Aplica as novas configurações ao terminal de forma imediata (TCSANOW).
 
     ch = getchar();
 
@@ -50,16 +51,13 @@ char leOpcao() {
     }
 
     // Restaura a configuração original do terminal.
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);// Restaura as configurações do terminal para o estado original, que foram armazenadas em 'oldt'.
 
     return ch;
 }
 
-void exibeTelaOperacoes(int escolha, char *menuExibicao[], char *entrada, char *resultado) {
+void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
     limpaTela();
-    int linhaMeio = LINHAS_TELA / 2;
-
-    // Cabeçalho
     printf("--------- MENU ---------\n");
     for (int i = 0; i < LINHAS_TELA - 3; i++) {
         if (i < OPERACOES) {
@@ -68,15 +66,34 @@ void exibeTelaOperacoes(int escolha, char *menuExibicao[], char *entrada, char *
             } else {
                 printf("  %s\n", menuExibicao[i]);
             }
-        } else if (i == linhaMeio - 1) {
-            printf("Entrada: %s\n", entrada);
-        } else if (i == linhaMeio + 1) {
-            printf("Resultado: %s\n", resultado);
         } else {
             printf("\n");
         }
     }
-    printf("\nUse as teclas >>W<< e >>S<< para navegar, insira números, pressione 'F' para calcular.\n");
+    printf("\nUse as teclas >>W<< para subir, >>S<< para descer, >>D<< para selecionar.\n");
+    printf("Pressione 'A' para sair.\n");
+}
+
+void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
+    limpaTela();
+    int linhaMeio = LINHAS_TELA / 2;
+    int linhaNome = linhaMeio - 1;
+    int linhaEntrada = linhaMeio;
+    int linhaResultado = linhaMeio + 1;
+
+    printf("--------- %s ---------\n", nomeOperacao);
+    for (int i = 0; i < LINHAS_TELA - 3; i++) {
+        if (i == linhaNome) {
+            printf("%s\n", nomeOperacao);  // Exibe o nome da operação.
+        } else if (i == linhaEntrada) {
+            printf("Entrada: %s\n", entrada);  // Exibe o valor de entrada.
+        } else if (i == linhaResultado) {
+            printf("Resultado: %s\n", resultado);  // Exibe o resultado.
+        } else {
+            printf("\n");
+        }
+    }
+    printf("\nDigite um número e pressione 'D' para calcular, 'A' para voltar.\n");
 }
 
 void protoOperacoes(int escolha) {
@@ -94,15 +111,18 @@ void protoOperacoes(int escolha) {
         "Kelvin para Fahrenheit"
     };
 
+    // O nome da operação selecionada
+    char *nomeOperacao = menuExibicao[escolha];
+
     while (1) {
-        exibeTelaOperacoes(escolha, menuExibicao, entrada, resultado);
+        exibeTelaEntrada(nomeOperacao, entrada, resultado);
 
         tecla = leOpcao();
 
         if (tecla >= '0' && tecla <= '9' && posicao < sizeof(entrada) - 1) {
             entrada[posicao++] = tecla;
             entrada[posicao] = '\0';
-        } else if (tecla == 'f' || tecla == 'F') {
+        } else if (tecla == 'd' || tecla == 'D') {
             // Realizar a operação com o valor na entrada.
             double valorEntrada = atof(entrada);
             double valorResultado = 0.0;
@@ -136,43 +156,56 @@ void protoOperacoes(int escolha) {
             } else {
                 snprintf(resultado, sizeof(resultado), "Valor inválido!");
             }
-        } else if (tecla == 'd' || tecla == 'D') {
-            return; // Voltar ao menu.
+
+            exibeTelaEntrada(nomeOperacao, entrada, resultado); // Exibe o resultado final
+            getchar(); // Espera para que o usuário veja o resultado
+        } else if (tecla == 'a' || tecla == 'A') {
+            // Voltar ao menu de seleção de operações
+            return; // Volta ao menu
         }
     }
 }
 
 void menuProto() {
-    char *composicaoMenu[OPERACOES] = {
+    char *composicaoMenu[OPERACOES + 1] = { // Adicionando a opção de sair
         "Celsius para Fahrenheit",
         "Celsius para Kelvin",
         "Fahrenheit para Celsius",
         "Fahrenheit para Kelvin",
         "Kelvin para Celsius",
-        "Kelvin para Fahrenheit"
+        "Kelvin para Fahrenheit",
+        "Sair"
     };
 
     int escolhaTemp = 0;
     char leitura;
 
     while (1) {
-        exibeTelaOperacoes(escolhaTemp, composicaoMenu, "", "Aguardando...");
+        exibeTelaSelecao(escolhaTemp, composicaoMenu);
 
         leitura = leOpcao();
 
         switch (leitura) {
             case 'w':
             case 'W':
-                escolhaTemp = (escolhaTemp - 1 + OPERACOES) % OPERACOES;
+                escolhaTemp = (escolhaTemp - 1 + OPERACOES) % (OPERACOES + 1);
                 break;
             case 's':
             case 'S':
-                escolhaTemp = (escolhaTemp + 1) % OPERACOES;
+                escolhaTemp = (escolhaTemp + 1) % (OPERACOES + 1);
                 break;
             case 'd':
             case 'D':
-                protoOperacoes(escolhaTemp);
+                if (escolhaTemp == OPERACOES) {
+                    // Se a opção "Sair" for selecionada
+                    return; // Encerra o programa
+                } else {
+                    protoOperacoes(escolhaTemp); // Seleciona a operação
+                }
                 break;
+            case 'a':
+            case 'A':
+                return; // Encerra o programa quando 'A' for pressionado no menu principal
             default:
                 continue;
         }
