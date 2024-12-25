@@ -25,7 +25,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/builds)
 
 # Adiciona os arquivos ao executável principal
 add_executable(
-    MeuProjeto
+    ConversorSS4
     ${CMAKE_SOURCE_DIR}/src/main.c
     ${CORE_SOURCES}
     ${MODULE_SOURCES}
