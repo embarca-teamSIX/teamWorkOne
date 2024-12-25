@@ -1,19 +1,31 @@
-/*
-* Made by: Jorge Palma
-* Date:    18/12/2024
-* Project Embarcatech - First activity in group
-*
-* File: temperature.c
-*/
+/**
+ * @file temperature.c
+ * @brief Implementação de funções para conversão de temperaturas entre Celsius, Fahrenheit e Kelvin.
+ *
+ * Este módulo realiza conversões entre as seguintes escalas de temperatura:
+ * - Celsius
+ * - Fahrenheit
+ * - Kelvin
+ * As funções validam os valores de entrada para evitar cálculos abaixo do zero absoluto.
+ */
 
 #include <stdio.h>
 #include "temperature.h"
 
-// Converts Celsius to Fahrenheit
-return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit)
-{
+/**
+ * @brief Converte Celsius para Fahrenheit.
+ *
+ * Fórmula: Fahrenheit = (Celsius * 9/5) + 32
+ *
+ * @param celsius Valor em Celsius a ser convertido.
+ * @param fahrenheit Ponteiro para armazenar o resultado em Fahrenheit.
+ * @return Código de status da conversão.
+ */
+return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit) {
+    if (fahrenheit == NULL) {
+        return CONVERSION_FAILED;
+    }
     if (celsius < -273.15) {
-        printf("Error: Temperature below absolute zero in Celsius.\n");
         return CONVERSION_INVALID_VALUE;
     }
 
@@ -21,11 +33,20 @@ return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit)
     return CONVERSION_OK;
 }
 
-// Converts Celsius to Kelvin
-return_code_temp_t celsius_to_kelvin(double celsius, double *kelvin)
-{
+/**
+ * @brief Converte Celsius para Kelvin.
+ *
+ * Fórmula: Kelvin = Celsius + 273.15
+ *
+ * @param celsius Valor em Celsius a ser convertido.
+ * @param kelvin Ponteiro para armazenar o resultado em Kelvin.
+ * @return Código de status da conversão.
+ */
+return_code_temp_t celsius_to_kelvin(double celsius, double *kelvin) {
+    if (kelvin == NULL) {
+        return CONVERSION_FAILED;
+    }
     if (celsius < -273.15) {
-        printf("Error: Temperature below absolute zero in Celsius.\n");
         return CONVERSION_INVALID_VALUE;
     }
 
@@ -33,11 +54,20 @@ return_code_temp_t celsius_to_kelvin(double celsius, double *kelvin)
     return CONVERSION_OK;
 }
 
-// Converts Fahrenheit to Celsius
-return_code_temp_t fahrenheit_to_celsius(double fahrenheit, double *celsius)
-{
+/**
+ * @brief Converte Fahrenheit para Celsius.
+ *
+ * Fórmula: Celsius = (Fahrenheit - 32) * 5/9
+ *
+ * @param fahrenheit Valor em Fahrenheit a ser convertido.
+ * @param celsius Ponteiro para armazenar o resultado em Celsius.
+ * @return Código de status da conversão.
+ */
+return_code_temp_t fahrenheit_to_celsius(double fahrenheit, double *celsius) {
+    if (celsius == NULL) {
+        return CONVERSION_FAILED;
+    }
     if (fahrenheit < -459.67) {
-        printf("Error: Temperature below absolute zero in Fahrenheit.\n");
         return CONVERSION_INVALID_VALUE;
     }
 
@@ -45,11 +75,20 @@ return_code_temp_t fahrenheit_to_celsius(double fahrenheit, double *celsius)
     return CONVERSION_OK;
 }
 
-// Converts Fahrenheit to Kelvin
-return_code_temp_t fahrenheit_to_kelvin(double fahrenheit, double *kelvin)
-{
+/**
+ * @brief Converte Fahrenheit para Kelvin.
+ *
+ * Fórmula: Kelvin = (Fahrenheit + 459.67) * 5/9
+ *
+ * @param fahrenheit Valor em Fahrenheit a ser convertido.
+ * @param kelvin Ponteiro para armazenar o resultado em Kelvin.
+ * @return Código de status da conversão.
+ */
+return_code_temp_t fahrenheit_to_kelvin(double fahrenheit, double *kelvin) {
+    if (kelvin == NULL) {
+        return CONVERSION_FAILED;
+    }
     if (fahrenheit < -459.67) {
-        printf("Error: Temperature below absolute zero in Fahrenheit.\n");
         return CONVERSION_INVALID_VALUE;
     }
 
@@ -57,11 +96,20 @@ return_code_temp_t fahrenheit_to_kelvin(double fahrenheit, double *kelvin)
     return CONVERSION_OK;
 }
 
-// Converts Kelvin to Celsius
-return_code_temp_t kelvin_to_celsius(double kelvin, double *celsius)
-{
+/**
+ * @brief Converte Kelvin para Celsius.
+ *
+ * Fórmula: Celsius = Kelvin - 273.15
+ *
+ * @param kelvin Valor em Kelvin a ser convertido.
+ * @param celsius Ponteiro para armazenar o resultado em Celsius.
+ * @return Código de status da conversão.
+ */
+return_code_temp_t kelvin_to_celsius(double kelvin, double *celsius) {
+    if (celsius == NULL) {
+        return CONVERSION_FAILED;
+    }
     if (kelvin < 0.0) {
-        printf("Error: Temperature below absolute zero in Kelvin.\n");
         return CONVERSION_INVALID_VALUE;
     }
 
@@ -69,11 +117,20 @@ return_code_temp_t kelvin_to_celsius(double kelvin, double *celsius)
     return CONVERSION_OK;
 }
 
-// Converts Kelvin to Fahrenheit
-return_code_temp_t kelvin_to_fahrenheit(double kelvin, double *fahrenheit)
-{
+/**
+ * @brief Converte Kelvin para Fahrenheit.
+ *
+ * Fórmula: Fahrenheit = (Kelvin * 9/5) - 459.67
+ *
+ * @param kelvin Valor em Kelvin a ser convertido.
+ * @param fahrenheit Ponteiro para armazenar o resultado em Fahrenheit.
+ * @return Código de status da conversão.
+ */
+return_code_temp_t kelvin_to_fahrenheit(double kelvin, double *fahrenheit) {
+    if (fahrenheit == NULL) {
+        return CONVERSION_FAILED;
+    }
     if (kelvin < 0.0) {
-        printf("Error: Temperature below absolute zero in Kelvin.\n");
         return CONVERSION_INVALID_VALUE;
     }
 
