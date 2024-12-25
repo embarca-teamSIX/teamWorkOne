@@ -1,0 +1,11 @@
+#ignore vs code folder
+.vscode/
+
+#ignore all compiled files
+*.out
+
+#ignore builds files
+builds/
+
+#ignore cmake builds 
+build/
