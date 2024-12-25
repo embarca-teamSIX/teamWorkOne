@@ -3,7 +3,9 @@
 #include <string.h>
 #include <termio.h>
 #include <unistd.h>
+
 #include "temperature.h" // Cabeçalho com as funções de conversão de temperatura.
+#include "MODULO_OPERACAO_TEMP.h"
 
 #define OPERACOES 6 // Número total de operações no menu.
 #define LINHAS_TELA 30 // Número mínimo de linhas para todas as telas.
@@ -166,7 +168,7 @@ void protoOperacoes(int escolha) {
     }
 }
 
-void menuProto() {
+void menuProtoTemp() {
     char *composicaoMenu[OPERACOES + 1] = { // Adicionando a opção de sair
         "Celsius para Fahrenheit",
         "Celsius para Kelvin",

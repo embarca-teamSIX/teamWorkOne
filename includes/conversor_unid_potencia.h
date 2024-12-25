@@ -1,5 +1,5 @@
-#ifndef CONVERSOR_UNID_POTENCIA_H
-#define CONVERSOR_UNID_POTENCIA_H
+#ifndef CONVERSOR_UNID_POTENCIA
+#define CONVERSOR_UNID_POTENCIA
 
 /**
  * @file conversor_unid_potencia.h

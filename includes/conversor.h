@@ -1,8 +1,8 @@
-#ifndef CONVERSOR_H
-#define CONVERSOR_H
+#ifndef UNIDADE_DE_MEDIDA
+#define UNIDADE_DE_MEDIDA
 
 /**
- * @file conversor.h
+ * @file unidade_de_medida.h
  * @brief Declarações das funções para conversão entre unidades de comprimento.
  *
  * Este arquivo contém as assinaturas das funções utilizadas para realizar conversões

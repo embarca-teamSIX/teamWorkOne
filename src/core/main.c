@@ -25,6 +25,12 @@ main/
 #define LINHAS_TELA 30 // Número mínimo de linhas para todas as telas.
 #define COLUNAS_TELA 80 // Tamanho fixo para largura visual.
 
+//modulos das operacoes
+#include "MODULO_OPERACAO_TEMP.h"
+#include "MODULO_OPERACAO_ARMAZENAMENTO.h"
+#include "MODULO_OPERACAO_POTENCIA.h"
+#include "MODULO_OPERACAO_MEDIDAS.h"
+
 void limpaTela() {
     system("clear || cls");
 }
@@ -117,18 +123,22 @@ void protoOperacoes(int escolhaMenu)//0 to 9
     {
         case 1:
         //armazenamento
+        menuProtoArmazenamento();
         break;
     case 2:
         //energia
+        menuConversorPotencia();
         break;
     case 3:
         //volume
+        menuProtoVolume();
         break;
     case 4:
         //massa
         break;
     case 5:
         //temperatura
+        menuProtoTemp;
         break;
     case 6:
         //comprimento
