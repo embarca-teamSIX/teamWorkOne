@@ -13,9 +13,7 @@
 #define LINHAS_TELA 30   // Número mínimo de linhas para todas as telas.
 #define COLUNAS_TELA 80  // Tamanho fixo para largura visual.
 
-void limpaTela() {
-    system("clear || cls");
-}
+void limpaTela();
 
 // Protótipos de funções
 char leOpcao();

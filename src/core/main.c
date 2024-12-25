@@ -1,21 +1,3 @@
-/*
-main/
-    |->menu para selecionar
-    |->funções de loop para interação visual
-    |                   |->apos função ser selecionada 
-    |                   |-> iniciar subfunções para interface de iteração
-    |                   |   da opção desejada EX: interface de ler re retornar valor 
-    |                   |   convertido de cms para kms ou Cº para Fº
-    |                   |-> em caso de erro retornar status do erro e não encerrar
-    |->implementar foward e backward entre os sub menus
-    
-    {
-    loopMenu[operacao]()
-    }
-    menuLoop()
-    main()
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <termio.h>
@@ -34,86 +16,102 @@ main/
 #include "MODULO_OPERACAO_MASSA.h"
 #include "MODULO_OPERACAO_COMPRIMENTO.h"
 
+void limpaTela();
+void telaSaida();
+void telaInicial();
+void exibeMenu(int indiceParaDestaque, char* menuExibicao[]);
+void protoOperacoes(int escolhaMenu);
+char leOpcao();
+void menuLoop();
+int main(int argc, char* argv[]);
+
+/**
+ * @brief Limpa a tela do terminal.
+ *
+ * Esta função utiliza o comando do sistema para limpar a tela, 
+ * para sistemas Unix-like usa `clear` e no Windows usa `cls`.
+ */
 void limpaTela() {
     system("clear || cls");
 }
 
+/**
+ * @brief Exibe a tela de saída do programa.
+ *
+ * Esta função exibe uma animação de triângulo invertido e, ao final, 
+ * exibe a mensagem "See you Space cowboy..." antes de encerrar o programa.
+ */
 void telaSaida() {
     int altura = (int)(LINHAS_TELA * 0.6); // 60% da altura da tela para o triângulo invertido
 
-    // Limpa a tela e imprime a parte superior
     limpaTela();
     printf("\n\n");
-    printf("%*sSUB GRUPO 4\n\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
+    printf("%*sSUB GRUPO 4\n\n", (COLUNAS_TELA / 2) - 8, "");
 
-    // Desenha o triângulo invertido
     for (int linha = altura; linha > 0; linha--) {
         int espacos = (COLUNAS_TELA - (linha * 2)) / 2;
-        printf("%*s", espacos, ""); // Alinha o triângulo no centro
+        printf("%*s", espacos, "");
 
-        // Desenha as bordas do triângulo
         if (linha == altura) {
             for (int j = 0; j < linha * 2; j++) {
-                printf("-"); // Usando traços para a base
+                printf("-");
             }
         } else {
-            printf("\\"); // Contra barra à esquerda
+            printf("\\");
             for (int j = 0; j < (linha * 2) - 2; j++) {
-                printf(" "); // Espaço vazio dentro do triângulo
+                printf(" ");
             }
-            printf("/"); // Barra à direita
+            printf("/");
         }
         printf("\n");
     }
 
-    // Espaço para ajustar a posição do texto "Adeus..."
     for (int linha = altura + 1; linha < LINHAS_TELA - 3; linha++) {
         printf("\n");
     }
 
-    // Exibe a mensagem "Adeus..." na parte inferior da tela
-    printf("%*sSee you Space cowboy...\n", (COLUNAS_TELA / 2) - 4, ""); // Centraliza "Adeus..."
+    printf("%*sSee you Space cowboy...\n", (COLUNAS_TELA / 2) - 4, "");
+    sleep(2);
 
-    sleep(2); // Aguarda 2 segundos antes de encerrar
-
-    exit(0); // Encerra o programa de forma segura
+    exit(0);
 }
 
-void telaInicial()
-{   int altura = (int)(LINHAS_TELA * 0.6); // 60% da altura da tela para o triângulo
+/**
+ * @brief Exibe a tela inicial do programa.
+ *
+ * Esta função exibe uma animação semelhante à da tela de saída, com um triângulo
+ * que desaparece de cima para baixo e a exibição das informações "ILHEUS", "BA" e "2024".
+ */
+void telaInicial() {
+    int altura = (int)(LINHAS_TELA * 0.6);
 
-    // Limpa a tela e imprime a parte superior
     limpaTela();
     printf("\n\n");
-    printf("%*sSUB GRUPO 4\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
+    printf("%*sSUB GRUPO 4\n", (COLUNAS_TELA / 2) - 8, "");
 
-    // Desenha o triângulo invertido
     for (int i = altura; i > 0; i--) {
-        limpaTela(); // Limpa a tela para atualização
+        limpaTela();
         printf("\n\n");
-        printf("%*sSUB GRUPO 4\n\n\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
-        
-        // Desenha a parte superior do triângulo
+        printf("%*sSUB GRUPO 4\n\n\n", (COLUNAS_TELA / 2) - 8, "");
+
         for (int linha = altura; linha > 0; linha--) {
             int espacos = (COLUNAS_TELA - (linha * 2)) / 2;
-            printf("%*s", espacos, ""); // Alinha o triângulo no centro
-            
-            // Desenha as bordas do triângulo
+            printf("%*s", espacos, "");
+
             if (linha == altura) {
                 for (int j = 0; j < linha * 2; j++) {
-                    printf("-"); // Usando traços para a base
+                    printf("-");
                 }
             } else {
-                printf("\\"); // Correção: Contra barra agora à esquerda
+                printf("\\");
                 for (int j = 0; j < (linha * 2) - 2; j++) {
-                    printf(" "); // Espaço vazio dentro do triângulo
+                    printf(" ");
                 }
-                printf("/"); // Correção: Barra agora à direita
+                printf("/");
             }
             printf("\n");
         }
 
-        // Exibe o texto "ILHEUS", "BA" e "2024" na parte inferior
         for (int linha = altura + 1; linha < LINHAS_TELA - 3; linha++) {
             printf("\n");
         }
@@ -121,17 +119,23 @@ void telaInicial()
         printf("%*sBA\n", (COLUNAS_TELA / 10), "");
         printf("%*s2024\n", (COLUNAS_TELA / 10), "");
 
-        // Aguarda 1 segundo
         usleep(1000);
     }
 
-    sleep(2);// Aguarda 5 segundos antes de continuar
-   
-
+    sleep(2);
 }
-void exibeMenu(int indiceParaDestaque, char*menuExibicao[])
-{
-   limpaTela();
+
+/**
+ * @brief Exibe o menu principal de opções e destaca a opção selecionada.
+ *
+ * Esta função exibe as opções do menu e destaca a opção selecionada 
+ * com os caracteres `> <`, permitindo navegação com as teclas W, S e D.
+ *
+ * @param indiceParaDestaque Índice da opção atual selecionada.
+ * @param menuExibicao Vetor de strings contendo as opções do menu.
+ */
+void exibeMenu(int indiceParaDestaque, char* menuExibicao[]) {
+    limpaTela();
     printf("--------- MENU ---------\n");
     for (int i = 0; i < LINHAS_TELA - 3; i++) {
         if (i < OPCOES) {
@@ -147,163 +151,136 @@ void exibeMenu(int indiceParaDestaque, char*menuExibicao[])
     printf("\nUse as teclas >>W<< para subir, >>S<< para descer, >>D<< para selecionar.\n");
     printf("Pressione 'A' para sair.\n");
 }
+
 /**
- * Nome: protoOperacoes
- * 
- * Descrição: função que recebe o valor do indice da opção do menu e 
- *            chama a tela subsequente
- * 
- * Parametros: 
- *          -int escolhaMenu: inteiro que contem o indice 
- * 
- * Retorno:
- *          -sem retorno
- * 
+ * @brief Função principal para processar as operações do menu.
+ *
+ * Esta função recebe o índice da opção selecionada e chama a função correspondente 
+ * para cada tipo de operação. 
+ *
+ * @param escolhaMenu Índice da opção selecionada no menu.
  */
-void protoOperacoes(int escolhaMenu)//0 to 9
-{
+void protoOperacoes(int escolhaMenu) {
     limpaTela();
 
-    switch (escolhaMenu)
-    {
+    switch (escolhaMenu) {
         case 1:
-        //armazenamento
-        menuProtoArmazenamento();//ok
-        break;
-    case 2:
-        //energia
-        menuConversorPotencia();//ok
-        break;
-    case 3:
-        //volume
-        menuProtoVolume();
-        break;
-    case 4:
-        //massa
-        menuProtoMassa();
-        break;
-    case 5:
-        //temperatura
-        menuProtoTemp;
-        break;
-    case 6:
-        //comprimento
-        menuProtoComprimento();
-        break;
-    case 7:
-        //sair
-        telaSaida();
-        break;
-    
-    default:
-    //printf("escolha: %d", escolhaMenu);
-        break;
+            menuProtoArmazenamento();
+            break;
+        case 2:
+            menuConversorPotencia();
+            break;
+        case 3:
+            menuProtoVolume();
+            break;
+        case 4:
+            menuProtoMassa();
+            break;
+        case 5:
+            menuProtoTemp();
+            break;
+        case 6:
+            menuProtoComprimento();
+            break;
+        case 7:
+            telaSaida();
+            break;
+        default:
+            break;
     }
-    return;
 }
 
-char leOpcao()
-{
-struct termios oldt, newt;
+/**
+ * @brief Lê a opção digitada pelo usuário.
+ *
+ * Esta função captura a tecla pressionada pelo usuário sem precisar pressionar "Enter".
+ * A função trata as teclas direcionais para navegação no menu e a tecla 'D' 
+ * para selecionar uma opção.
+ *
+ * @return A tecla pressionada pelo usuário.
+ */
+char leOpcao() {
+    struct termios oldt, newt;
     char ch;
 
-    // Obtém as configurações atuais do terminal
-    tcgetattr(STDIN_FILENO, &oldt);  // STDIN_FILENO refere-se à entrada padrão (teclado)
+    tcgetattr(STDIN_FILENO, &oldt);
     newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO); // Desabilita o modo canônico (sem buffer) e o eco de caracteres
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt); // Aplica as novas configurações
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
-    ch = getchar(); // Lê o caractere sem esperar por "Enter"
-    
-        if(ch =='\033'){
-            char seq[2];
-            read(STDIN_FILENO, &seq, 2); // Lê os dois próximos caracteres
-            if(seq[0]=='['){
-                switch(seq[1]){
-                    case 'A': ch ='w'; break;//cima
-                    case 'B': ch ='s'; break;//baixo
-                    case 'C': ch ='d'; break;//direita
-                    case 'D': ch ='a'; break;//esquerda
-                }
+    ch = getchar();
+
+    if (ch == '\033') {
+        char seq[2];
+        read(STDIN_FILENO, &seq, 2);
+        if (seq[0] == '[') {
+            switch (seq[1]) {
+                case 'A': ch = 'w'; break;
+                case 'B': ch = 's'; break;
+                case 'C': ch = 'd'; break;
+                case 'D': ch = 'a'; break;
             }
         }
+    }
 
-    // Restaura as configurações do terminal para o estado original
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
     return ch;
 }
-/**
- * exibeMenu() -imprime em tela as strings de forma ordenada
- * 
- * Descrição: essa função exibe em tela de forma ordenada as strings do menu
- * 
- * Parametros: 
- *          -int indiceParaDestaque: que retorna o indice atual do apontador "><"
- *          -char* menuExibicao: string com o textual do menu
- * 
- * Retorno:
- *          -sem retorno
- * 
- */
 
 /**
- * menuLoop() -menu em loop 
- * 
- * Descrição: essa função fica rodando em loop para exibir em tela e processar as entradas
- * 
- * Parametros: 
- *          -nenhum
- * 
- * Retorno:
- *          -sem retorno
- * 
+ * @brief Função que exibe o menu principal em loop.
+ *
+ * Esta função fica em um loop exibindo o menu e processando as teclas pressionadas 
+ * pelo usuário para navegação e seleção das opções.
  */
-void menuLoop()
-{
-    char*listaMenu[OPCOES]={"Unidades de Armazenamento",
-                            "Unidades de Energia",
-                            "Unidades de volume",
-                            "Unidades de massa",
-                            "Unidades de temperatura",
-                            "Unidades de comprimento",
-                            "SAIR"};
-    int escolhaMomento=0;
-    char leitura; 
+void menuLoop() {
+    char* listaMenu[OPCOES] = {
+        "Unidades de Armazenamento",
+        "Unidades de Energia",
+        "Unidades de volume",
+        "Unidades de massa",
+        "Unidades de temperatura",
+        "Unidades de comprimento",
+        "SAIR"
+    };
+    int escolhaMomento = 0;
+    char leitura;
 
-    while(1)
-    {
+    while (1) {
         (void)exibeMenu(escolhaMomento, listaMenu);
-        leitura=leOpcao();
-        switch (leitura)
-        {
-        case 'w':
-            escolhaMomento=(escolhaMomento-1+OPCOES)%OPCOES;
-            break;
-        case 'W':
-            escolhaMomento=(escolhaMomento-1+OPCOES)%OPCOES;
-            break;
-        case 's':
-            escolhaMomento=(escolhaMomento+1)%OPCOES;
-            break;
-        case 'S':
-            escolhaMomento=(escolhaMomento+1)%OPCOES;
-            break;
-        case 'd':
-        case 'D':
-            (void)protoOperacoes(escolhaMomento);//funcao void que recebe o valor da operacao e 
-                                          //inicia a chamada das funções das operações
-            break;
-        
-        default:
-            continue;
-            break;
+        leitura = leOpcao();
+        switch (leitura) {
+            case 'w':
+            case 'W':
+                escolhaMomento = (escolhaMomento - 1 + OPCOES) % OPCOES;
+                break;
+            case 's':
+            case 'S':
+                escolhaMomento = (escolhaMomento + 1) % OPCOES;
+                break;
+            case 'd':
+            case 'D':
+                (void)protoOperacoes(escolhaMomento);
+                break;
+            default:
+                continue;
+                break;
         }
     }
-
 }
-int main(int argc, char*argv[])
-{
+
+/**
+ * @brief Função principal do programa.
+ *
+ * A função `main` inicia o loop do menu, chamando a função `menuLoop` que controla 
+ * a interação com o usuário.
+ *
+ * @param argc Número de argumentos de linha de comando.
+ * @param argv Vetor contendo os argumentos de linha de comando.
+ * @return Retorna 0 após a execução.
+ */
+int main(int argc, char* argv[]) {
     menuLoop();
-return 0;
+    return 0;
 }

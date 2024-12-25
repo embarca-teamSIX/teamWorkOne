@@ -21,11 +21,7 @@
  * - `CONVERSION_ERROR`: Erro genérico durante a conversão.
  * - `CONVERSION_INVALID_VALUE`: Valor de entrada inválido para a conversão.
  */
-typedef enum {
-    CONVERSION_OK = 0x00,              /**< Conversão bem-sucedida. */
-    CONVERSION_ERROR = 0x01,           /**< Erro genérico durante a conversão. */
-    CONVERSION_INVALID_VALUE = 0x02   /**< Valor de entrada inválido. */
-} conversion_status_t;
+typedef  conversion_status_t;
 
 /**
  * @brief Converte quilogramas para gramas.

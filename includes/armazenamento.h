@@ -23,10 +23,7 @@
  * - `CONVERSION_OK`: Conversão realizada com sucesso.
  * - `CONVERSION_INVALID_VALUE`: Valor de entrada inválido.
  */
-typedef enum {
-    CONVERSION_OK = 0x00,           /**< Conversão realizada com sucesso. */
-    CONVERSION_INVALID_VALUE = 0x01 /**< Valor de entrada inválido. */
-} return_code_data;
+typedef  return_code_data;
 
 /**
  * @brief Converte bits para bytes.
