@@ -21,7 +21,7 @@ main/
 #include <termio.h>
 #include <unistd.h>
 
-#define OPCOES 10
+#define OPCOES 6
 
 /**
  * Nome: protoOperacoes
