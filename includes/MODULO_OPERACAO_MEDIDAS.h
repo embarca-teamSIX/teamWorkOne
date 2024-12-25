@@ -1,3 +1,6 @@
+#ifndef MODULO_OPERACAO_MEDIDAS
+#define MODULO_OPERACAO_MEDIDAS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,3 +30,5 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
 
 void protoOperacoesVolume(int escolha);
 void menuProtoVolume();//entry point
+
+#endif

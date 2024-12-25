@@ -4,6 +4,7 @@
 #include <termio.h>
 #include <unistd.h>
 #include "armazenamento.h" // Cabeçalho com as funções de conversão de armazenamento.
+#include "MODULO_OPERACAO_ARMAZENAMENTO.h"
 
 #define OPERACOES 20 // Número total de operações de conversão.
 #define LINHAS_TELA 30 // Número mínimo de linhas para todas as telas.

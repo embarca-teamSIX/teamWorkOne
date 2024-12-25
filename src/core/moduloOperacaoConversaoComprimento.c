@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include "conversor.h" // Cabeçalho com as funções de conversão de comprimento.
+#include "MODULO_OPERACAO_COMPRIMENTO.h"
 
 #define OPERACOES 4      // Número total de operações no menu.
 #define LINHAS_TELA 30   // Número mínimo de linhas para todas as telas.
@@ -21,10 +22,6 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
 void protoOperacoesComprimento(int escolha);
 void menuProtoComprimento();
 
-int main() {
-    menuProtoComprimento();
-    return 0;
-}
 
 char leOpcao() {
     struct termios oldt, newt;

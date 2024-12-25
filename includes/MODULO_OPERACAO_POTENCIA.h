@@ -1,3 +1,6 @@
+#ifndef MODULO_OPERACAO_POTENCIA
+#define MODULO_OPERACAO_POTENCIA
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,3 +18,5 @@ void exibeTelaSelecao(int escolha, char *menuExibicao[]);
 void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
 void operacoesPotencia(int escolha);
 void menuConversorPotencia();
+
+#endif

@@ -21,6 +21,7 @@ main/
 #include <termio.h>
 #include <unistd.h>
 
+//macros
 #define OPCOES 7
 #define LINHAS_TELA 30 // Número mínimo de linhas para todas as telas.
 #define COLUNAS_TELA 80 // Tamanho fixo para largura visual.
@@ -30,23 +31,67 @@ main/
 #include "MODULO_OPERACAO_ARMAZENAMENTO.h"
 #include "MODULO_OPERACAO_POTENCIA.h"
 #include "MODULO_OPERACAO_MEDIDAS.h"
+#include "MODULO_OPERACAO_MASSA.h"
+#include "MODULO_OPERACAO_COMPRIMENTO.h"
 
 void limpaTela() {
     system("clear || cls");
 }
+
+void telaSaida() {
+    int altura = (int)(LINHAS_TELA * 0.6); // 60% da altura da tela para o triângulo invertido
+
+    // Limpa a tela e imprime a parte superior
+    limpaTela();
+    printf("\n\n");
+    printf("%*sSUB GRUPO 4\n\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
+
+    // Desenha o triângulo invertido
+    for (int linha = altura; linha > 0; linha--) {
+        int espacos = (COLUNAS_TELA - (linha * 2)) / 2;
+        printf("%*s", espacos, ""); // Alinha o triângulo no centro
+
+        // Desenha as bordas do triângulo
+        if (linha == altura) {
+            for (int j = 0; j < linha * 2; j++) {
+                printf("-"); // Usando traços para a base
+            }
+        } else {
+            printf("\\"); // Contra barra à esquerda
+            for (int j = 0; j < (linha * 2) - 2; j++) {
+                printf(" "); // Espaço vazio dentro do triângulo
+            }
+            printf("/"); // Barra à direita
+        }
+        printf("\n");
+    }
+
+    // Espaço para ajustar a posição do texto "Adeus..."
+    for (int linha = altura + 1; linha < LINHAS_TELA - 3; linha++) {
+        printf("\n");
+    }
+
+    // Exibe a mensagem "Adeus..." na parte inferior da tela
+    printf("%*sSee you Space cowboy...\n", (COLUNAS_TELA / 2) - 4, ""); // Centraliza "Adeus..."
+
+    sleep(2); // Aguarda 2 segundos antes de encerrar
+
+    exit(0); // Encerra o programa de forma segura
+}
+
 void telaInicial()
 {   int altura = (int)(LINHAS_TELA * 0.6); // 60% da altura da tela para o triângulo
 
     // Limpa a tela e imprime a parte superior
     limpaTela();
     printf("\n\n");
-    printf("%*sSUB GRUPO 6\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
+    printf("%*sSUB GRUPO 4\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
 
     // Desenha o triângulo invertido
     for (int i = altura; i > 0; i--) {
         limpaTela(); // Limpa a tela para atualização
         printf("\n\n");
-        printf("%*sSUB GRUPO 6\n\n\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
+        printf("%*sSUB GRUPO 4\n\n\n", (COLUNAS_TELA / 2) - 8, ""); // Centraliza "SUB GRUPO 6"
         
         // Desenha a parte superior do triângulo
         for (int linha = altura; linha > 0; linha--) {
@@ -123,11 +168,11 @@ void protoOperacoes(int escolhaMenu)//0 to 9
     {
         case 1:
         //armazenamento
-        menuProtoArmazenamento();
+        menuProtoArmazenamento();//ok
         break;
     case 2:
         //energia
-        menuConversorPotencia();
+        menuConversorPotencia();//ok
         break;
     case 3:
         //volume
@@ -135,6 +180,7 @@ void protoOperacoes(int escolhaMenu)//0 to 9
         break;
     case 4:
         //massa
+        menuProtoMassa();
         break;
     case 5:
         //temperatura
@@ -142,9 +188,11 @@ void protoOperacoes(int escolhaMenu)//0 to 9
         break;
     case 6:
         //comprimento
+        menuProtoComprimento();
         break;
     case 7:
         //sair
+        telaSaida();
         break;
     
     default:

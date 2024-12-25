@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include "mass_conversion.h" // Cabeçalho com as funções de conversão de massa.
+#include "MODULO_OPERACAO_MASSA.h"
 
 #define OPERACOES 3      // Número total de operações no menu.
 #define LINHAS_TELA 30   // Número mínimo de linhas para todas as telas.
@@ -21,10 +22,6 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
 void protoOperacoesMassa(int escolha);
 void menuProtoMassa();
 
-int main() {
-    menuProtoMassa();
-    return 0;
-}
 
 char leOpcao() {
     struct termios oldt, newt;

@@ -1,3 +1,6 @@
+#ifndef MODULO_OPERACAO_ARMAZENAMENTO
+#define MODULO_OPERACAO_ARMAZENAMENTO
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,9 +8,6 @@
 #include <unistd.h>
 #include "armazenamento.h" // Cabeçalho com as funções de conversão de armazenamento.
 
-#define OPERACOES 20 // Número total de operações de conversão.
-#define LINHAS_TELA 30 // Número mínimo de linhas para todas as telas.
-#define COLUNAS_TELA 80 // Tamanho fixo para largura visual.
 
 void limpaTela();
 
@@ -48,3 +48,5 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
 char leOpcao();
 void protoOperacoes(int escolha);
 void menuProtoArmazenamento();
+
+#endif

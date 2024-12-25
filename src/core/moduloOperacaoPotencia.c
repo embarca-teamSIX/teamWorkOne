@@ -4,6 +4,7 @@
 #include <termio.h>
 #include <unistd.h>
 #include "conversor_unid_potencia.h" // Incluindo o cabeçalho de conversão de potência.
+#include "MODULO_OPERACAO_POTENCIA.h"
 
 #define OPERACOES 6      // Número de operações disponíveis no menu.
 #define LINHAS_TELA 30   // Número mínimo de linhas para a interface.
