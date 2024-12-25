@@ -1,7 +1,0 @@
-{
-    "cmake.cmakePath": "/snap/cmake/current/bin//cmake",
-    "files.associations": {
-        "*.embeddedhtml": "html",
-        "stdlib.h": "c"
-    }
-}

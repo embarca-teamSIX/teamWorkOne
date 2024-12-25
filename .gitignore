@@ -1,5 +1,5 @@
 #ignore vs code folder
-.vscode/
+**/.vscode/
 
 #ignore all compiled files
 *.out
@@ -8,4 +8,6 @@
 builds/
 
 #ignore cmake builds 
-build/
+**/build/
+#
+**/teste/

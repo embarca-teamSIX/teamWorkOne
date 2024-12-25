@@ -1,3 +1,0 @@
-/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/build/CMakeFiles/MeuProjeto.dir
-/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/build/CMakeFiles/edit_cache.dir
-/home/gleisin/Documentos/Programacao Em LUA/teamWorkOne/build/CMakeFiles/rebuild_cache.dir
