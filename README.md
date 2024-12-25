@@ -24,16 +24,19 @@ mkdir build
 cd build
 ```
 3. **gerar arquivos para compilação**
+
 -dentro do diretorio execute cmake para gerar arquivos para compilação
 ```bash
 cmake ..
 ```
 4. **compilar projeto**
+
 -dentro da pasta cmake executar `make` para compilar
 ```bash
 make
 ```
 5. **executar o programam**
+
 -apos compilar basta iniciar o arquivo gerado
 ```bash
 ./ConversorSS4
