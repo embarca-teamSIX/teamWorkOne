@@ -15,14 +15,13 @@
 #include "MODULO_OPERACAO_MEDIDAS.h"
 #include "MODULO_OPERACAO_MASSA.h"
 #include "MODULO_OPERACAO_COMPRIMENTO.h"
+#include "utils.h"
 
-void limpaTela();
 void telaSaida();
 void telaInicial();
 void exibeMenu(int indiceParaDestaque, char* menuExibicao[]);
-void protoOperacoes(int escolhaMenu);
-char leOpcao();
 void menuLoop();
+void protoOperacoesMain(int escolhaMenu);
 int main(int argc, char* argv[]);
 
 /**
@@ -31,9 +30,6 @@ int main(int argc, char* argv[]);
  * Esta função utiliza o comando do sistema para limpar a tela, 
  * para sistemas Unix-like usa `clear` e no Windows usa `cls`.
  */
-void limpaTela() {
-    system("clear || cls");
-}
 
 /**
  * @brief Exibe a tela de saída do programa.
@@ -122,7 +118,7 @@ void telaInicial() {
         usleep(1000);
     }
 
-    sleep(2);
+    sleep(5);
 }
 
 /**
@@ -160,29 +156,29 @@ void exibeMenu(int indiceParaDestaque, char* menuExibicao[]) {
  *
  * @param escolhaMenu Índice da opção selecionada no menu.
  */
-void protoOperacoes(int escolhaMenu) {
+void protoOperacoesMain(int escolhaMenu) {
     limpaTela();
 
     switch (escolhaMenu) {
+        case 0:
+            menuProtoArmazenamento_ARMAZENAMENTO();
+            break;
         case 1:
-            menuProtoArmazenamento();
+            menuConversorPotencia_POTENCIA();
             break;
         case 2:
-            menuConversorPotencia();
+            menuProtoVolume_MEDIDAS();
             break;
         case 3:
-            menuProtoVolume();
+            menuProtoMassa_MASS();
             break;
         case 4:
-            menuProtoMassa();
+            menuProtoTemp_TEMP();
             break;
         case 5:
-            menuProtoTemp();
+            menuProtoComprimento_COMPRIMENTO();
             break;
         case 6:
-            menuProtoComprimento();
-            break;
-        case 7:
             telaSaida();
             break;
         default:
@@ -199,34 +195,7 @@ void protoOperacoes(int escolhaMenu) {
  *
  * @return A tecla pressionada pelo usuário.
  */
-char leOpcao() {
-    struct termios oldt, newt;
-    char ch;
 
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-
-    ch = getchar();
-
-    if (ch == '\033') {
-        char seq[2];
-        read(STDIN_FILENO, &seq, 2);
-        if (seq[0] == '[') {
-            switch (seq[1]) {
-                case 'A': ch = 'w'; break;
-                case 'B': ch = 's'; break;
-                case 'C': ch = 'd'; break;
-                case 'D': ch = 'a'; break;
-            }
-        }
-    }
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-
-    return ch;
-}
 
 /**
  * @brief Função que exibe o menu principal em loop.
@@ -261,7 +230,7 @@ void menuLoop() {
                 break;
             case 'd':
             case 'D':
-                (void)protoOperacoes(escolhaMomento);
+                (void)protoOperacoesMain(escolhaMomento);
                 break;
             default:
                 continue;
@@ -281,6 +250,7 @@ void menuLoop() {
  * @return Retorna 0 após a execução.
  */
 int main(int argc, char* argv[]) {
+    telaInicial();
     menuLoop();
     return 0;
 }

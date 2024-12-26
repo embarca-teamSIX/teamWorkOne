@@ -9,7 +9,7 @@
  */
 
 #include <stdlib.h>
-#include "conversor_de_potencia.h"
+#include "conversor_unid_potencia.h"
 
 /**
  * @brief Converte Watts para Quilowatts.

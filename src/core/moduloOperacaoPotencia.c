@@ -3,57 +3,18 @@
 #include <string.h>
 #include <termio.h>
 #include <unistd.h>
-#include "conversor_unid_potencia.h" // Incluindo o cabeçalho de conversão de potência.
+
+#include "conversor_unid_potencia.h" 
 #include "MODULO_OPERACAO_POTENCIA.h"
+#include "utils.h"
 
 #define OPERACOES 6      // Número de operações disponíveis no menu.
 #define LINHAS_TELA 30   // Número mínimo de linhas para a interface.
 #define COLUNAS_TELA 80  // Largura fixa para o terminal.
 
-void limpaTela() {
-    system("clear || cls");
-}
-
-// Protótipos de funções
-char leOpcao();
-void exibeTelaSelecao(int escolha, char *menuExibicao[]);
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
-void operacoesPotencia(int escolha);
-void menuConversorPotencia();
 
 
-
-char leOpcao() {
-    struct termios oldt, newt;
-    char ch;
-
-    // Configura o terminal para leitura sem buffer.
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-
-    ch = getchar();
-
-    if (ch == '\033') {
-        char seq[2];
-        read(STDIN_FILENO, seq, 2);
-        if (seq[0] == '[') {
-            switch (seq[1]) {
-                case 'A': ch = 'w'; break; // Seta para cima
-                case 'B': ch = 's'; break; // Seta para baixo
-                case 'C': ch = 'd'; break; // Seta para direita
-                case 'D': ch = 'a'; break; // Seta para esquerda
-            }
-        }
-    }
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-
-    return ch;
-}
-
-void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
+void exibeTelaSelecao_POTENCIA(int escolha, char *menuExibicao[]) {
     limpaTela();
     printf("--------- MENU DE CONVERSÃO DE POTÊNCIA ---------\n");
     for (int i = 0; i < LINHAS_TELA - 3; i++) {
@@ -71,7 +32,7 @@ void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
     printf("Pressione 'A' para sair.\n");
 }
 
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
+void exibeTelaEntrada_POTENCIA(char *nomeOperacao, char *entrada, char *resultado) {
     limpaTela();
     printf("--------- %s ---------\n", nomeOperacao);
     printf("Entrada: %s\n", entrada);
@@ -79,7 +40,7 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
     printf("\nDigite um valor e pressione 'D' para calcular, ou 'A' para voltar.\n");
 }
 
-void operacoesPotencia(int escolha) {
+void operacoesPotencia_POTENCIA(int escolha) {
     char entrada[50] = "";  // Buffer para o valor digitado.
     char resultado[50] = "Aguardando...";
     char tecla;
@@ -97,7 +58,7 @@ void operacoesPotencia(int escolha) {
     char *nomeOperacao = menuExibicao[escolha];
 
     while (1) {
-        exibeTelaEntrada(nomeOperacao, entrada, resultado);
+        exibeTelaEntrada_POTENCIA(nomeOperacao, entrada, resultado);
 
         tecla = leOpcao();
 
@@ -143,7 +104,7 @@ void operacoesPotencia(int escolha) {
     }
 }
 
-void menuConversorPotencia() {
+void menuConversorPotencia_POTENCIA() {
     char *composicaoMenu[OPERACOES + 1] = {
         "Watts para Kilowatts",
         "Watts para Cavalos-Vapor",
@@ -158,7 +119,7 @@ void menuConversorPotencia() {
     char leitura;
 
     while (1) {
-        exibeTelaSelecao(escolhaTemp, composicaoMenu);
+        exibeTelaSelecao_POTENCIA(escolhaTemp, composicaoMenu);
 
         leitura = leOpcao();
 
@@ -176,7 +137,7 @@ void menuConversorPotencia() {
                 if (escolhaTemp == OPERACOES) {
                     return;
                 } else {
-                    operacoesPotencia(escolhaTemp);
+                    operacoesPotencia_POTENCIA(escolhaTemp);
                 }
                 break;
             case 'a':

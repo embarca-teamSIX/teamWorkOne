@@ -6,58 +6,17 @@
 
 #include "conversor.h" // Cabeçalho com as funções de conversão de comprimento.
 #include "MODULO_OPERACAO_COMPRIMENTO.h"
+#include "utils.h"
 
-#define OPERACOES 4      // Número total de operações no menu.
+#define COMPRIMENTO_OPERACOES 4      // Número total de operações no menu.
 #define LINHAS_TELA 30   // Número mínimo de linhas para todas as telas.
 #define COLUNAS_TELA 80  // Tamanho fixo para largura visual.
 
-void limpaTela() {
-    system("clear || cls");
-}
-
-// Protótipos de funções
-char leOpcao();
-void exibeTelaSelecao(int escolha, char *menuExibicao[]);
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
-void protoOperacoesComprimento(int escolha);
-void menuProtoComprimento();
-
-
-char leOpcao() {
-    struct termios oldt, newt;
-    char ch;
-
-    // Configuração do terminal para leitura de caracteres sem buffer.
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-
-    ch = getchar();
-
-    if (ch == '\033') {
-        char seq[2];
-        read(STDIN_FILENO, &seq, 2);
-        if (seq[0] == '[') {
-            switch (seq[1]) {
-                case 'A': ch = 'w'; break; // Cima
-                case 'B': ch = 's'; break; // Baixo
-                case 'C': ch = 'd'; break; // Direita
-                case 'D': ch = 'a'; break; // Esquerda
-            }
-        }
-    }
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-
-    return ch;
-}
-
-void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
+void exibeTelaSelecao_COMPRIMENTO(int escolha, char *menuExibicao[]) {
     limpaTela();
     printf("--------- MENU ---------\n");
     for (int i = 0; i < LINHAS_TELA - 3; i++) {
-        if (i < OPERACOES) {
+        if (i < COMPRIMENTO_OPERACOES) {
             if (i == escolha) {
                 printf("> %s <\n", menuExibicao[i]);
             } else {
@@ -71,7 +30,7 @@ void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
     printf("Pressione 'A' para sair.\n");
 }
 
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
+void exibeTelaEntrada_COMPRIMENTO(char *nomeOperacao, char *entrada, char *resultado) {
     limpaTela();
     printf("--------- %s ---------\n", nomeOperacao);
     printf("Entrada: %s\n", entrada);
@@ -79,13 +38,13 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
     printf("\nDigite um número e pressione 'D' para calcular, 'A' para voltar.\n");
 }
 
-void protoOperacoesComprimento(int escolha) {
+void protoOperacoesComprimento_COMPRIMENTO(int escolha) {
     char entrada[50] = "";  // Buffer para o valor digitado.
     char resultado[50] = "Aguardando...";
     char tecla;
     int posicao = 0;
 
-    char *menuExibicao[OPERACOES] = {
+    char *menuExibicao[COMPRIMENTO_OPERACOES] = {
         "Metros para Centímetros",
         "Metros para Milímetros",
         "Centímetros para Metros",
@@ -95,7 +54,7 @@ void protoOperacoesComprimento(int escolha) {
     char *nomeOperacao = menuExibicao[escolha];
 
     while (1) {
-        exibeTelaEntrada(nomeOperacao, entrada, resultado);
+        exibeTelaEntrada_COMPRIMENTO(nomeOperacao, entrada, resultado);
 
         tecla = leOpcao();
 
@@ -125,7 +84,7 @@ void protoOperacoesComprimento(int escolha) {
             }
 
             snprintf(resultado, sizeof(resultado), "%.2f", valorConvertido);
-            exibeTelaEntrada(nomeOperacao, entrada, resultado); // Exibe o resultado final
+            exibeTelaEntrada_COMPRIMENTO(nomeOperacao, entrada, resultado); // Exibe o resultado final
             getchar(); // Espera para que o usuário veja o resultado
         } else if (tecla == 'a' || tecla == 'A') {
             return; // Voltar ao menu principal
@@ -133,8 +92,8 @@ void protoOperacoesComprimento(int escolha) {
     }
 }
 
-void menuProtoComprimento() {
-    char *composicaoMenu[OPERACOES + 1] = {
+void menuProtoComprimento_COMPRIMENTO() {
+    char *composicaoMenu[COMPRIMENTO_OPERACOES + 1] = {
         "Metros para Centímetros",
         "Metros para Milímetros",
         "Centímetros para Metros",
@@ -146,25 +105,25 @@ void menuProtoComprimento() {
     char leitura;
 
     while (1) {
-        exibeTelaSelecao(escolhaTemp, composicaoMenu);
+        exibeTelaSelecao_COMPRIMENTO(escolhaTemp, composicaoMenu);
 
         leitura = leOpcao();
 
         switch (leitura) {
             case 'w':
             case 'W':
-                escolhaTemp = (escolhaTemp - 1 + OPERACOES) % (OPERACOES + 1);
+                escolhaTemp = (escolhaTemp - 1 + COMPRIMENTO_OPERACOES) % (COMPRIMENTO_OPERACOES + 1);
                 break;
             case 's':
             case 'S':
-                escolhaTemp = (escolhaTemp + 1) % (OPERACOES + 1);
+                escolhaTemp = (escolhaTemp + 1) % (COMPRIMENTO_OPERACOES + 1);
                 break;
             case 'd':
             case 'D':
-                if (escolhaTemp == OPERACOES) {
+                if (escolhaTemp == COMPRIMENTO_OPERACOES) {
                     return; // Sai do programa
                 } else {
-                    protoOperacoesComprimento(escolhaTemp);
+                    protoOperacoesComprimento_COMPRIMENTO(escolhaTemp);
                 }
                 break;
             case 'a':

@@ -6,58 +6,19 @@
 
 #include "mass_conversion.h" // Cabeçalho com as funções de conversão de massa.
 #include "MODULO_OPERACAO_MASSA.h"
+#include "utils.h"
 
-#define OPERACOES 3      // Número total de operações no menu.
+#define MASS_OPERACOES 3      // Número total de operações no menu.
 #define LINHAS_TELA 30   // Número mínimo de linhas para todas as telas.
 #define COLUNAS_TELA 80  // Tamanho fixo para largura visual.
 
-void limpaTela() {
-    system("clear || cls");
-}
-
-// Protótipos de funções
-char leOpcao();
-void exibeTelaSelecao(int escolha, char *menuExibicao[]);
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
-void protoOperacoesMassa(int escolha);
-void menuProtoMassa();
 
 
-char leOpcao() {
-    struct termios oldt, newt;
-    char ch;
-
-    // Configuração do terminal para leitura de caracteres sem buffer.
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-
-    ch = getchar();
-
-    if (ch == '\033') {
-        char seq[2];
-        read(STDIN_FILENO, &seq, 2);
-        if (seq[0] == '[') {
-            switch (seq[1]) {
-                case 'A': ch = 'w'; break; // Cima
-                case 'B': ch = 's'; break; // Baixo
-                case 'C': ch = 'd'; break; // Direita
-                case 'D': ch = 'a'; break; // Esquerda
-            }
-        }
-    }
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-
-    return ch;
-}
-
-void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
+void exibeTelaSelecao_MASS(int escolha, char *menuExibicao[]) {
     limpaTela();
     printf("--------- MENU ---------\n");
     for (int i = 0; i < LINHAS_TELA - 3; i++) {
-        if (i < OPERACOES) {
+        if (i < MASS_OPERACOES) {
             if (i == escolha) {
                 printf("> %s <\n", menuExibicao[i]);
             } else {
@@ -71,7 +32,7 @@ void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
     printf("Pressione 'A' para sair.\n");
 }
 
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
+void exibeTelaEntrada_MASS(char *nomeOperacao, char *entrada, char *resultado) {
     limpaTela();
     printf("--------- %s ---------\n", nomeOperacao);
     printf("Entrada: %s\n", entrada);
@@ -79,13 +40,13 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
     printf("\nDigite um número e pressione 'D' para calcular, 'A' para voltar.\n");
 }
 
-void protoOperacoesMassa(int escolha) {
+void protoOperacoesMassa_MASS(int escolha) {
     char entrada[50] = "";  // Buffer para o valor digitado.
     char resultado[50] = "Aguardando...";
     char tecla;
     int posicao = 0;
 
-    char *menuExibicao[OPERACOES] = {
+    char *menuExibicao[MASS_OPERACOES] = {
         "Quilogramas para Gramas",
         "Quilogramas para Toneladas",
         "Gramas para Quilogramas"
@@ -94,7 +55,7 @@ void protoOperacoesMassa(int escolha) {
     char *nomeOperacao = menuExibicao[escolha];
 
     while (1) {
-        exibeTelaEntrada(nomeOperacao, entrada, resultado);
+        exibeTelaEntrada_MASS(nomeOperacao, entrada, resultado);
 
         tecla = leOpcao();
 
@@ -126,7 +87,7 @@ void protoOperacoesMassa(int escolha) {
                 snprintf(resultado, sizeof(resultado), "Valor inválido!");
             }
 
-            exibeTelaEntrada(nomeOperacao, entrada, resultado); // Exibe o resultado final
+            exibeTelaEntrada_MASS(nomeOperacao, entrada, resultado); // Exibe o resultado final
             getchar(); // Espera para que o usuário veja o resultado
         } else if (tecla == 'a' || tecla == 'A') {
             return; // Voltar ao menu principal
@@ -134,8 +95,8 @@ void protoOperacoesMassa(int escolha) {
     }
 }
 
-void menuProtoMassa() {//entry point aqui
-    char *composicaoMenu[OPERACOES + 1] = {
+void menuProtoMassa_MASS() {//entry point aqui
+    char *composicaoMenu[MASS_OPERACOES + 1] = {
         "Quilogramas para Gramas",
         "Quilogramas para Toneladas",
         "Gramas para Quilogramas",
@@ -146,25 +107,25 @@ void menuProtoMassa() {//entry point aqui
     char leitura;
 
     while (1) {
-        exibeTelaSelecao(escolhaTemp, composicaoMenu);
+        exibeTelaSelecao_MASS(escolhaTemp, composicaoMenu);
 
         leitura = leOpcao();
 
         switch (leitura) {
             case 'w':
             case 'W':
-                escolhaTemp = (escolhaTemp - 1 + OPERACOES) % (OPERACOES + 1);
+                escolhaTemp = (escolhaTemp - 1 + MASS_OPERACOES) % (MASS_OPERACOES + 1);
                 break;
             case 's':
             case 'S':
-                escolhaTemp = (escolhaTemp + 1) % (OPERACOES + 1);
+                escolhaTemp = (escolhaTemp + 1) % (MASS_OPERACOES + 1);
                 break;
             case 'd':
             case 'D':
-                if (escolhaTemp == OPERACOES) {
+                if (escolhaTemp == MASS_OPERACOES) {
                     return; // Sai do programa
                 } else {
-                    protoOperacoesMassa(escolhaTemp);
+                    protoOperacoesMassa_MASS(escolhaTemp);
                 }
                 break;
             case 'a':

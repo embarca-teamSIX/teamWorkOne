@@ -6,81 +6,14 @@
 
 #include "temperature.h" // Cabeçalho com as funções de conversão de temperatura.
 #include "MODULO_OPERACAO_TEMP.h"
+#include "utils.h"
 
 #define OPERACOES 6 // Número total de operações no menu.
 #define LINHAS_TELA 30 // Número mínimo de linhas para todas as telas.
 #define COLUNAS_TELA 80 // Tamanho fixo para largura visual.
 
 
-char leOpcao();
-void exibeTelaSelecao(int escolha, char *menuExibicao[]);
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
-void protoOperacoes(int escolha);
-void menuProto();
 
-/**
- * @brief Limpa a tela do terminal.
- * 
- * A função chama o comando de sistema para limpar a tela do terminal, 
- * funcionando tanto em sistemas Unix quanto em Windows.
- */
-void limpaTela() {
-    system("clear || cls");
-}
-
-
-/**
- * @brief Função principal do programa.
- * 
- * A função inicia a execução do programa, chamando o menu principal 
- * e lidando com a interação com o usuário.
- * 
- * @return Retorna 0 para indicar a execução bem-sucedida do programa.
- */
-int main() {
-    menuProto();
-    return 0;
-}
-
-/**
- * @brief Lê a opção do usuário do teclado.
- * 
- * A função configura o terminal para não utilizar buffer na leitura de 
- * teclas e permite a captura de teclas direcionais. Após a leitura, 
- * as configurações do terminal são restauradas.
- * 
- * @return Retorna o caractere da tecla pressionada pelo usuário.
- */
-char leOpcao() {
-    struct termios oldt, newt; // Declara duas estruturas 'termios', que armazenam configurações do terminal.
-    char ch;
-
-    // Configuração do terminal para leitura de caracteres sem buffer.
-    tcgetattr(STDIN_FILENO, &oldt); // Pega as configurações atuais do terminal (stdin) e armazena em 'oldt'.
-    newt = oldt; // Copia as configurações atuais para 'newt', que será modificado.
-    newt.c_lflag &= ~(ICANON | ECHO); // Modifica a configuração de 'newt' para desabilitar o modo canônico (entrada linha por linha) e o eco (não mostrar o caractere digitado).
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt); // Aplica as novas configurações ao terminal de forma imediata (TCSANOW).
-
-    ch = getchar();
-
-    if (ch == '\033') {
-        char seq[2];
-        read(STDIN_FILENO, &seq, 2);
-        if (seq[0] == '[') {
-            switch (seq[1]) {
-                case 'A': ch = 'w'; break; // Cima
-                case 'B': ch = 's'; break; // Baixo
-                case 'C': ch = 'd'; break; // Direita
-                case 'D': ch = 'a'; break; // Esquerda
-            }
-        }
-    }
-
-    // Restaura a configuração original do terminal.
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // Restaura as configurações do terminal para o estado original, que foram armazenadas em 'oldt'.
-
-    return ch;
-}
 
 /**
  * @brief Exibe a tela de seleção de operações.
@@ -91,7 +24,7 @@ char leOpcao() {
  * @param escolha A posição atual da escolha do usuário no menu.
  * @param menuExibicao O array contendo as opções de operação para exibição.
  */
-void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
+void exibeTelaSelecao_TEMP(int escolha, char *menuExibicao[]) {
     limpaTela();
     printf("--------- MENU ---------\n");
     for (int i = 0; i < LINHAS_TELA - 3; i++) {
@@ -119,7 +52,7 @@ void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
  * @param entrada O valor de entrada fornecido pelo usuário.
  * @param resultado O resultado da conversão ou a mensagem de erro.
  */
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
+void exibeTelaEntrada_TEMP(char *nomeOperacao, char *entrada, char *resultado) {
     limpaTela();
     int linhaMeio = LINHAS_TELA / 2;
     int linhaNome = linhaMeio - 1;
@@ -150,7 +83,7 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
  * 
  * @param escolha A escolha da operação que o usuário deseja realizar.
  */
-void protoOperacoes(int escolha) {
+void protoOperacoesTemp_TEMP(int escolha) {
     char entrada[50] = ""; // Buffer para o valor digitado.
     char resultado[50] = "Aguardando..."; // Resultado inicial.
     char tecla;
@@ -169,7 +102,7 @@ void protoOperacoes(int escolha) {
     char *nomeOperacao = menuExibicao[escolha];
 
     while (1) {
-        exibeTelaEntrada(nomeOperacao, entrada, resultado);
+        exibeTelaEntrada_TEMP(nomeOperacao, entrada, resultado);
 
         tecla = leOpcao();
 
@@ -211,7 +144,7 @@ void protoOperacoes(int escolha) {
                 snprintf(resultado, sizeof(resultado), "Valor inválido!");
             }
 
-            exibeTelaEntrada(nomeOperacao, entrada, resultado); // Exibe o resultado final
+            exibeTelaEntrada_TEMP(nomeOperacao, entrada, resultado); // Exibe o resultado final
             getchar(); // Espera para que o usuário veja o resultado
         } else if (tecla == 'a' || tecla == 'A') {
             // Voltar ao menu de seleção de operações
@@ -227,7 +160,7 @@ void protoOperacoes(int escolha) {
  * e sair do programa. As teclas de navegação são W, S para subir e descer, 
  * e D para selecionar a opção.
  */
-void menuProtoTemp() {
+void menuProtoTemp_TEMP() {
     char *composicaoMenu[OPERACOES + 1] = { // Adicionando a opção de sair
         "Celsius para Fahrenheit",
         "Celsius para Kelvin",
@@ -242,7 +175,7 @@ void menuProtoTemp() {
     char leitura;
 
     while (1) {
-        exibeTelaSelecao(escolhaTemp, composicaoMenu);
+        exibeTelaSelecao_TEMP(escolhaTemp, composicaoMenu);
 
         leitura = leOpcao();
 
@@ -261,7 +194,7 @@ void menuProtoTemp() {
                     // Se a opção "Sair" for selecionada
                     return; // Encerra o programa
                 } else {
-                    protoOperacoes(escolhaTemp); // Seleciona a operação
+                    protoOperacoesTemp_TEMP(escolhaTemp); // Seleciona a operação
                 }
                 break;
             case 'a':

@@ -20,13 +20,18 @@ file(GLOB_RECURSE CORE_SOURCES
 file(GLOB_RECURSE MODULE_SOURCES
     ${CMAKE_SOURCE_DIR}/src/modules/*.c
 )
-# Define o diretorio para saida de binarios
+
+file(GLOB_RECURSE UTIL_SOURCES
+    ${CMAKE_SOURCE_DIR}/src/utils/*.c
+)
+
+# Define o diretório para saída de binários
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/builds)
 
-# Adiciona os arquivos ao executável principal
+# Adiciona o executável principal
 add_executable(
     ConversorSS4
-    ${CMAKE_SOURCE_DIR}/src/core/main.c
     ${CORE_SOURCES}
     ${MODULE_SOURCES}
+    ${UTIL_SOURCES}
 )

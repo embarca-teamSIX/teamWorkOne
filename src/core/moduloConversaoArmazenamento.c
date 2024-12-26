@@ -3,260 +3,17 @@
 #include <string.h>
 #include <termio.h>
 #include <unistd.h>
+
 #include "armazenamento.h" // Cabeçalho com as funções de conversão de armazenamento.
 #include "MODULO_OPERACAO_ARMAZENAMENTO.h"
+#include "utils.h"
+
 
 #define OPERACOES 20 // Número total de operações de conversão.
 #define LINHAS_TELA 30 // Número mínimo de linhas para todas as telas.
 #define COLUNAS_TELA 80 // Tamanho fixo para largura visual.
 
-void limpaTela() {
-    system("clear || cls");
-}
-
-// Protótipos de funções
-char leOpcao();
-void exibeTelaSelecao(int escolha, char *menuExibicao[]);
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
-void protoOperacoes(int escolha);
-void menuProto();
-armazenamento_return_code_data bit_to_byte(char numero[], char *resultado);
-armazenamento_return_code_data bit_to_kb(char numero[], char *resultado);
-armazenamento_return_code_data bit_to_mb(char numero[], char *resultado);
-armazenamento_return_code_data bit_to_gb(char numero[], char *resultado) ;
-armazenamento_return_code_data byte_to_bit(char numero[], char *resultado) ;
-armazenamento_return_code_data byte_to_kb(char numero[], char *resultado);
-armazenamento_return_code_data byte_to_mb(char numero[], char *resultado);
-armazenamento_return_code_data byte_to_gb(char numero[], char *resultado);
-armazenamento_return_code_data byte_to_tb(char numero[], char *resultado) ;
-armazenamento_return_code_data kb_to_bit(char numero[], char *resultado);
-armazenamento_return_code_data kb_to_byte(char numero[], char *resultado);
-armazenamento_return_code_data kb_to_mb(char numero[], char *resultado);
-armazenamento_return_code_data kb_to_gb(char numero[], char *resultado);
-armazenamento_return_code_data kb_to_tb(char numero[], char *resultado);
-armazenamento_return_code_data mb_to_bit(char numero[], char *resultado);
-armazenamento_return_code_data mb_to_byte(char numero[], char *resultado);
-armazenamento_return_code_data mb_to_kb(char numero[], char *resultado);
-armazenamento_return_code_data mb_to_gb(char numero[], char *resultado);
-armazenamento_return_code_data mb_to_tb(char numero[], char *resultado);
-armazenamento_return_code_data gb_to_bit(char numero[], char *resultado);
-armazenamento_return_code_data gb_to_byte(char numero[], char *resultado);
-armazenamento_return_code_data gb_to_kb(char numero[], char *resultado);
-armazenamento_return_code_data gb_to_mb(char numero[], char *resultado);
-armazenamento_return_code_data gb_to_tb(char numero[], char *resultado);
-armazenamento_return_code_data tb_to_bit(char numero[], char *resultado);
-armazenamento_return_code_data tb_to_byte(char numero[], char *resultado);
-armazenamento_return_code_data tb_to_kb(char numero[], char *resultado);
-armazenamento_return_code_data tb_to_mb(char numero[], char *resultado);
-armazenamento_return_code_data tb_to_gb(char numero[], char *resultado);
-//---------------------------------------
-
-armazenamento_return_code_data bit_to_byte(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 8;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data bit_to_kb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 8192;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-
-armazenamento_return_code_data bit_to_mb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 8388608;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data bit_to_gb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 8589934592;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data byte_to_bit(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 8;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data byte_to_kb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1024;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data byte_to_mb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1048576;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data byte_to_gb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1073741824;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data byte_to_tb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1099511627776;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data kb_to_bit(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 8192;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data kb_to_byte(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1024;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data kb_to_mb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1024;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data kb_to_gb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1048576;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data kb_to_tb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1073741824;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data mb_to_bit(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 8388608;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data mb_to_byte(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1048576;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data mb_to_kb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1024;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data mb_to_gb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1024;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data mb_to_tb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1048576;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data gb_to_bit(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 8589934592;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data gb_to_byte(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1073741824;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data gb_to_kb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1048576;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data gb_to_mb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1024;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data gb_to_tb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor / 1024;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data tb_to_bit(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 8796093022208;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data tb_to_byte(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1099511627776;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data tb_to_kb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1073741824;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data tb_to_mb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1048576;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-armazenamento_return_code_data tb_to_gb(char numero[], char *resultado) {
-    double valor = atof(numero);
-    double resultado_valor = valor * 1024;
-    snprintf(resultado, 50, "%.2f", resultado_valor);
-    return ARMAZENAMENTO_CONVERSION_OK;
-}
-
-
-void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
+void exibeTelaSelecao_ARMAZENAMENTO(int escolha, char *menuExibicao[]) {
     limpaTela();
     printf("--------- MENU DE CONVERSÃO ---------\n");
     for (int i = 0; i < LINHAS_TELA - 3; i++) {
@@ -274,7 +31,7 @@ void exibeTelaSelecao(int escolha, char *menuExibicao[]) {
     printf("Pressione 'A' para sair.\n");
 }
 
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
+void exibeTelaEntrada_ARMAZENAMENTO(char *nomeOperacao, char *entrada, char *resultado) {
     limpaTela();
     int linhaMeio = LINHAS_TELA / 2;
     int linhaNome = linhaMeio - 1;
@@ -296,38 +53,9 @@ void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado) {
     printf("\nDigite um valor e pressione 'D' para calcular, 'A' para voltar.\n");
 }
 
-char leOpcao() {
-    struct termios oldt, newt;
-    char ch;
 
-    // Configuração do terminal para leitura de caracteres sem buffer.
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
-    ch = getchar();
-
-    if (ch == '\033') {
-        char seq[2];
-        read(STDIN_FILENO, &seq, 2);
-        if (seq[0] == '[') {
-            switch (seq[1]) {
-                case 'A': ch = 'w'; break; // Cima
-                case 'B': ch = 's'; break; // Baixo
-                case 'C': ch = 'd'; break; // Direita
-                case 'D': ch = 'a'; break; // Esquerda
-            }
-        }
-    }
-
-    // Restaura a configuração original do terminal.
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-
-    return ch;
-}
-
-void protoOperacoes(int escolha) {
+void protoOperacoesArmazenamento_ARMAZENAMENTO(int escolha) {
     char entrada[50] = ""; // Buffer para o valor digitado.
     char resultado[50] = "Aguardando..."; // Resultado inicial.
     char tecla;
@@ -361,7 +89,7 @@ void protoOperacoes(int escolha) {
     char *nomeOperacao = menuExibicao[escolha];
 
     while (1) {
-        exibeTelaEntrada(nomeOperacao, entrada, resultado);
+        exibeTelaEntrada_ARMAZENAMENTO(nomeOperacao, entrada, resultado);
 
         tecla = leOpcao();
 
@@ -443,7 +171,7 @@ void protoOperacoes(int escolha) {
                 snprintf(resultado, sizeof(resultado), "Valor inválido!");
             }
 
-            exibeTelaEntrada(nomeOperacao, entrada, resultado); // Exibe o resultado final
+            exibeTelaEntrada_ARMAZENAMENTO(nomeOperacao, entrada, resultado); // Exibe o resultado final
             getchar(); // Espera para que o usuário veja o resultado
         } else if (tecla == 'a' || tecla == 'A') {
             // Voltar ao menu de seleção de operações
@@ -452,7 +180,7 @@ void protoOperacoes(int escolha) {
     }
 }
 
-void menuProtoArmazenamento() {
+void menuProtoArmazenamento_ARMAZENAMENTO() {
     char *composicaoMenu[OPERACOES] = { // Removendo a opção "Sair"
         "Bits para Bytes",
         "Bits para Kilobytes",
@@ -480,7 +208,7 @@ void menuProtoArmazenamento() {
     char leitura;
 
     while (1) {
-        exibeTelaSelecao(escolhaTemp, composicaoMenu);
+        exibeTelaSelecao_ARMAZENAMENTO(escolhaTemp, composicaoMenu);
 
         leitura = leOpcao();
 
@@ -495,7 +223,7 @@ void menuProtoArmazenamento() {
                 break;
             case 'd':
             case 'D':
-                protoOperacoes(escolhaTemp); // Seleciona a operação
+                protoOperacoesArmazenamento_ARMAZENAMENTO(escolhaTemp); // Seleciona a operação
                 break;
             case 'a':
             case 'A':

@@ -8,15 +8,12 @@
 #include <unistd.h>
 #include "armazenamento.h" // Cabeçalho com as funções de conversão de armazenamento.
 
-
-void limpaTela();
-
+#include "utils.h"
 
 
-void exibeTelaSelecao(int escolha, char *menuExibicao[]); 
-void exibeTelaEntrada(char *nomeOperacao, char *entrada, char *resultado);
-char leOpcao();
-void protoOperacoes(int escolha);
-void menuProtoArmazenamento();
+void exibeTelaSelecao_ARMAZENAMENTO(int escolha, char *menuExibicao[]);
+void exibeTelaEntrada_ARMAZENAMENTO(char *nomeOperacao, char *entrada, char *resultado);
+void protoOperacoesArmazenamento_ARMAZENAMENTO(int escolha);
+void menuProtoArmazenamento_ARMAZENAMENTO();
 
 #endif
