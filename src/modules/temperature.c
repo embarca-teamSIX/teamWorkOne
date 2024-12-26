@@ -21,16 +21,16 @@
  * @param fahrenheit Ponteiro para armazenar o resultado em Fahrenheit.
  * @return Código de status da conversão.
  */
-return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit) {
+temperature_return_code_temp celsius_to_fahrenheit(double celsius, double *fahrenheit) {
     if (fahrenheit == NULL) {
-        return CONVERSION_FAILED;
+        return TEMPERATURE_CONVERSION_FAILED;
     }
     if (celsius < -273.15) {
-        return CONVERSION_INVALID_VALUE;
+        return TEMPERATURE_CONVERSION_INVALID_VALUE;
     }
 
     *fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
-    return CONVERSION_OK;
+    return TEMPERATURE_CONVERSION_OK;
 }
 
 /**
@@ -42,16 +42,16 @@ return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit) {
  * @param kelvin Ponteiro para armazenar o resultado em Kelvin.
  * @return Código de status da conversão.
  */
-return_code_temp_t celsius_to_kelvin(double celsius, double *kelvin) {
+temperature_return_code_temp celsius_to_kelvin(double celsius, double *kelvin) {
     if (kelvin == NULL) {
-        return CONVERSION_FAILED;
+        return TEMPERATURE_CONVERSION_FAILED;
     }
     if (celsius < -273.15) {
-        return CONVERSION_INVALID_VALUE;
+        return TEMPERATURE_CONVERSION_INVALID_VALUE;
     }
 
     *kelvin = celsius + 273.15;
-    return CONVERSION_OK;
+    return TEMPERATURE_CONVERSION_OK;
 }
 
 /**
@@ -63,16 +63,16 @@ return_code_temp_t celsius_to_kelvin(double celsius, double *kelvin) {
  * @param celsius Ponteiro para armazenar o resultado em Celsius.
  * @return Código de status da conversão.
  */
-return_code_temp_t fahrenheit_to_celsius(double fahrenheit, double *celsius) {
+temperature_return_code_temp fahrenheit_to_celsius(double fahrenheit, double *celsius) {
     if (celsius == NULL) {
-        return CONVERSION_FAILED;
+        return TEMPERATURE_CONVERSION_FAILED;
     }
     if (fahrenheit < -459.67) {
-        return CONVERSION_INVALID_VALUE;
+        return TEMPERATURE_CONVERSION_INVALID_VALUE;
     }
 
     *celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
-    return CONVERSION_OK;
+    return TEMPERATURE_CONVERSION_OK;
 }
 
 /**
@@ -84,16 +84,16 @@ return_code_temp_t fahrenheit_to_celsius(double fahrenheit, double *celsius) {
  * @param kelvin Ponteiro para armazenar o resultado em Kelvin.
  * @return Código de status da conversão.
  */
-return_code_temp_t fahrenheit_to_kelvin(double fahrenheit, double *kelvin) {
+temperature_return_code_temp fahrenheit_to_kelvin(double fahrenheit, double *kelvin) {
     if (kelvin == NULL) {
-        return CONVERSION_FAILED;
+        return TEMPERATURE_CONVERSION_FAILED;
     }
     if (fahrenheit < -459.67) {
-        return CONVERSION_INVALID_VALUE;
+        return TEMPERATURE_CONVERSION_INVALID_VALUE;
     }
 
     *kelvin = (fahrenheit + 459.67) * 5.0 / 9.0;
-    return CONVERSION_OK;
+    return TEMPERATURE_CONVERSION_OK;
 }
 
 /**
@@ -105,16 +105,16 @@ return_code_temp_t fahrenheit_to_kelvin(double fahrenheit, double *kelvin) {
  * @param celsius Ponteiro para armazenar o resultado em Celsius.
  * @return Código de status da conversão.
  */
-return_code_temp_t kelvin_to_celsius(double kelvin, double *celsius) {
+temperature_return_code_temp kelvin_to_celsius(double kelvin, double *celsius) {
     if (celsius == NULL) {
-        return CONVERSION_FAILED;
+        return TEMPERATURE_CONVERSION_FAILED;
     }
     if (kelvin < 0.0) {
-        return CONVERSION_INVALID_VALUE;
+        return TEMPERATURE_CONVERSION_INVALID_VALUE;
     }
 
     *celsius = kelvin - 273.15;
-    return CONVERSION_OK;
+    return TEMPERATURE_CONVERSION_OK;
 }
 
 /**
@@ -126,14 +126,14 @@ return_code_temp_t kelvin_to_celsius(double kelvin, double *celsius) {
  * @param fahrenheit Ponteiro para armazenar o resultado em Fahrenheit.
  * @return Código de status da conversão.
  */
-return_code_temp_t kelvin_to_fahrenheit(double kelvin, double *fahrenheit) {
+temperature_return_code_temp kelvin_to_fahrenheit(double kelvin, double *fahrenheit) {
     if (fahrenheit == NULL) {
-        return CONVERSION_FAILED;
+        return TEMPERATURE_CONVERSION_FAILED;
     }
     if (kelvin < 0.0) {
-        return CONVERSION_INVALID_VALUE;
+        return TEMPERATURE_CONVERSION_INVALID_VALUE;
     }
 
     *fahrenheit = (kelvin * 9.0 / 5.0) - 459.67;
-    return CONVERSION_OK;
+    return TEMPERATURE_CONVERSION_OK;
 }

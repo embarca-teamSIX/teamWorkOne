@@ -24,9 +24,9 @@
  * - `CONVERSION_INVALID_VALUE`: Valor de entrada inválido.
  */
 typedef enum {
-    CONVERSION_OK = 0x00,           /**< Conversão realizada com sucesso. */
-    CONVERSION_INVALID_VALUE = 0x01 /**< Valor de entrada inválido. */
-} return_code_data;
+    ARMAZENAMENTO_CONVERSION_OK = 0x00,           /**< Conversão realizada com sucesso. */
+    ARMAZENAMENTO_CONVERSION_INVALID_VALUE = 0x01 /**< Valor de entrada inválido. */
+} armazenamento_return_code_data;
 
 /**
  * @brief Converte bits para bytes.
@@ -35,7 +35,7 @@ typedef enum {
  * @param resultado Ponteiro para armazenar o resultado em bytes.
  * @return Código de retorno indicando sucesso ou falha na conversão.
  */
-return_code_data bit_to_byte(char numero[], char *resultado);
+armazenamento_return_code_data bit_to_byte(char numero[], char *resultado);
 
 /**
  * @brief Converte bits para kilobytes.
@@ -44,7 +44,7 @@ return_code_data bit_to_byte(char numero[], char *resultado);
  * @param resultado Ponteiro para armazenar o resultado em kilobytes.
  * @return Código de retorno indicando sucesso ou falha na conversão.
  */
-return_code_data bit_to_kb(char numero[], char *resultado);
+armazenamento_return_code_data bit_to_kb(char numero[], char *resultado);
 
 /**
  * @brief Converte bits para megabytes.
@@ -53,7 +53,7 @@ return_code_data bit_to_kb(char numero[], char *resultado);
  * @param resultado Ponteiro para armazenar o resultado em megabytes.
  * @return Código de retorno indicando sucesso ou falha na conversão.
  */
-return_code_data bit_to_mb(char numero[], char *resultado);
+armazenamento_return_code_data bit_to_mb(char numero[], char *resultado);
 
 /**
  * @brief Converte bits para gigabytes.
@@ -62,7 +62,7 @@ return_code_data bit_to_mb(char numero[], char *resultado);
  * @param resultado Ponteiro para armazenar o resultado em gigabytes.
  * @return Código de retorno indicando sucesso ou falha na conversão.
  */
-return_code_data bit_to_gb(char numero[], char *resultado);
+armazenamento_return_code_data bit_to_gb(char numero[], char *resultado);
 
 /**
  * @brief Converte bits para terabytes.
@@ -71,37 +71,35 @@ return_code_data bit_to_gb(char numero[], char *resultado);
  * @param resultado Ponteiro para armazenar o resultado em terabytes.
  * @return Código de retorno indicando sucesso ou falha na conversão.
  */
-return_code_data bit_to_tb(char numero[], char *resultado);
+armazenamento_return_code_data bit_to_tb(char numero[], char *resultado);
+armazenamento_return_code_data byte_to_bit(char numero[], char *resultado);
+armazenamento_return_code_data byte_to_kb(char numero[], char *resultado);
+armazenamento_return_code_data byte_to_mb(char numero[], char *resultado);
+armazenamento_return_code_data byte_to_gb(char numero[], char *resultado);
+armazenamento_return_code_data byte_to_tb(char numero[], char *resultado);
 
-/* Demais funções seguem o mesmo padrão de documentação */
-return_code_data byte_to_bit(char numero[], char *resultado);
-return_code_data byte_to_kb(char numero[], char *resultado);
-return_code_data byte_to_mb(char numero[], char *resultado);
-return_code_data byte_to_gb(char numero[], char *resultado);
-return_code_data byte_to_tb(char numero[], char *resultado);
+armazenamento_return_code_data kb_to_bit(char numero[], char *resultado);
+armazenamento_return_code_data kb_to_byte(char numero[], char *resultado);
+armazenamento_return_code_data kb_to_mb(char numero[], char *resultado);
+armazenamento_return_code_data kb_to_gb(char numero[], char *resultado);
+armazenamento_return_code_data kb_to_tb(char numero[], char *resultado);
 
-return_code_data kb_to_bit(char numero[], char *resultado);
-return_code_data kb_to_byte(char numero[], char *resultado);
-return_code_data kb_to_mb(char numero[], char *resultado);
-return_code_data kb_to_gb(char numero[], char *resultado);
-return_code_data kb_to_tb(char numero[], char *resultado);
+armazenamento_return_code_data mb_to_bit(char numero[], char *resultado);
+armazenamento_return_code_data mb_to_byte(char numero[], char *resultado);
+armazenamento_return_code_data mb_to_kb(char numero[], char *resultado);
+armazenamento_return_code_data mb_to_gb(char numero[], char *resultado);
+armazenamento_return_code_data mb_to_tb(char numero[], char *resultado);
 
-return_code_data mb_to_bit(char numero[], char *resultado);
-return_code_data mb_to_byte(char numero[], char *resultado);
-return_code_data mb_to_kb(char numero[], char *resultado);
-return_code_data mb_to_gb(char numero[], char *resultado);
-return_code_data mb_to_tb(char numero[], char *resultado);
+armazenamento_return_code_data gb_to_bit(char numero[], char *resultado);
+armazenamento_return_code_data gb_to_byte(char numero[], char *resultado);
+armazenamento_return_code_data gb_to_kb(char numero[], char *resultado);
+armazenamento_return_code_data gb_to_mb(char numero[], char *resultado);
+armazenamento_return_code_data gb_to_tb(char numero[], char *resultado);
 
-return_code_data gb_to_bit(char numero[], char *resultado);
-return_code_data gb_to_byte(char numero[], char *resultado);
-return_code_data gb_to_kb(char numero[], char *resultado);
-return_code_data gb_to_mb(char numero[], char *resultado);
-return_code_data gb_to_tb(char numero[], char *resultado);
-
-return_code_data tb_to_bit(char numero[], char *resultado);
-return_code_data tb_to_byte(char numero[], char *resultado);
-return_code_data tb_to_kb(char numero[], char *resultado);
-return_code_data tb_to_mb(char numero[], char *resultado);
-return_code_data tb_to_gb(char numero[], char *resultado);
+armazenamento_return_code_data tb_to_bit(char numero[], char *resultado);
+armazenamento_return_code_data tb_to_byte(char numero[], char *resultado);
+armazenamento_return_code_data tb_to_kb(char numero[], char *resultado);
+armazenamento_return_code_data tb_to_mb(char numero[], char *resultado);
+armazenamento_return_code_data tb_to_gb(char numero[], char *resultado);
 
 #endif // ARMAZENAMENTO_H

@@ -20,15 +20,15 @@
  * @param g Ponteiro para armazenar o resultado em gramas.
  * @return Código de status indicando sucesso ou falha na conversão.
  */
-conversion_status_t kg_to_g(double kg, double *g) {
+mass_conversion_status kg_to_g(double kg, double *g) {
     if (g == NULL) {
-        return CONVERSION_ERROR;
+        return MASS_CONVERSION_ERROR;
     }
     if (kg < 0) {
-        return CONVERSION_INVALID_VALUE;
+        return MASS_CONVERSION_INVALID_VALUE;
     }
     *g = kg * 1000.0;
-    return CONVERSION_OK;
+    return MASS_CONVERSION_OK;
 }
 
 /**
@@ -40,15 +40,15 @@ conversion_status_t kg_to_g(double kg, double *g) {
  * @param ton Ponteiro para armazenar o resultado em toneladas.
  * @return Código de status indicando sucesso ou falha na conversão.
  */
-conversion_status_t kg_to_ton(double kg, double *ton) {
+mass_conversion_status kg_to_ton(double kg, double *ton) {
     if (ton == NULL) {
-        return CONVERSION_ERROR;
+        return MASS_CONVERSION_ERROR;
     }
     if (kg < 0) {
-        return CONVERSION_INVALID_VALUE;
+        return MASS_CONVERSION_INVALID_VALUE;
     }
     *ton = kg / 1000.0;
-    return CONVERSION_OK;
+    return MASS_CONVERSION_OK;
 }
 
 /**
@@ -60,13 +60,13 @@ conversion_status_t kg_to_ton(double kg, double *ton) {
  * @param kg Ponteiro para armazenar o resultado em quilogramas.
  * @return Código de status indicando sucesso ou falha na conversão.
  */
-conversion_status_t g_to_kg(double g, double *kg) {
+mass_conversion_status g_to_kg(double g, double *kg) {
     if (kg == NULL) {
-        return CONVERSION_ERROR;
+        return MASS_CONVERSION_ERROR;
     }
     if (g < 0) {
-        return CONVERSION_INVALID_VALUE;
+        return MASS_CONVERSION_INVALID_VALUE;
     }
     *kg = g / 1000.0;
-    return CONVERSION_OK;
+    return MASS_CONVERSION_OK;
 }

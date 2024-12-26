@@ -21,7 +21,11 @@
  * - `CONVERSION_ERROR`: Erro genérico durante a conversão.
  * - `CONVERSION_INVALID_VALUE`: Valor de entrada inválido para a conversão.
  */
-typedef  conversion_status_t;
+typedef enum {
+    MASS_CONVERSION_OK = 0x00,              /**< Conversão bem-sucedida. */
+    MASS_CONVERSION_ERROR = 0x01,           /**< Erro genérico durante a conversão. */
+    MASS_CONVERSION_INVALID_VALUE = 0x02   /**< Valor de entrada inválido. */
+} mass_conversion_status;
 
 /**
  * @brief Converte quilogramas para gramas.
@@ -32,7 +36,7 @@ typedef  conversion_status_t;
  * @param g Ponteiro para armazenar o resultado em gramas.
  * @return Código de status indicando se a conversão foi bem-sucedida ou não.
  */
-conversion_status_t kg_to_g(double kg, double *g);
+mass_conversion_status kg_to_g(double kg, double *g);
 
 /**
  * @brief Converte quilogramas para toneladas.
@@ -43,7 +47,7 @@ conversion_status_t kg_to_g(double kg, double *g);
  * @param ton Ponteiro para armazenar o resultado em toneladas.
  * @return Código de status indicando se a conversão foi bem-sucedida ou não.
  */
-conversion_status_t kg_to_ton(double kg, double *ton);
+mass_conversion_status kg_to_ton(double kg, double *ton);
 
 /**
  * @brief Converte gramas para quilogramas.
@@ -54,6 +58,6 @@ conversion_status_t kg_to_ton(double kg, double *ton);
  * @param kg Ponteiro para armazenar o resultado em quilogramas.
  * @return Código de status indicando se a conversão foi bem-sucedida ou não.
  */
-conversion_status_t g_to_kg(double g, double *kg);
+mass_conversion_status g_to_kg(double g, double *kg);
 
 #endif // MASS_CONVERSION_H

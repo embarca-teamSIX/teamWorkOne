@@ -24,10 +24,10 @@
  */
 typedef enum 
 {
-    CONVERSION_OK = 0x00,          /**< Conversão bem-sucedida. */
-    CONVERSION_FAILED = 0x01,     /**< Falha na conversão. */
-    CONVERSION_INVALID_VALUE = 0x02 /**< Valor de entrada inválido. */
-} return_code_temp_t;
+    TEMPERATURE_CONVERSION_OK = 0x00,          /**< Conversão bem-sucedida. */
+    TEMPERATURE_CONVERSION_FAILED = 0x01,     /**< Falha na conversão. */
+    TEMPERATURE_CONVERSION_INVALID_VALUE = 0x02 /**< Valor de entrada inválido. */
+} temperature_return_code_temp;
 
 /**
  * @brief Converte Celsius para Fahrenheit.
@@ -36,7 +36,7 @@ typedef enum
  * @param fahrenheit Ponteiro para armazenar o resultado em Fahrenheit.
  * @return Código de retorno indicando sucesso ou falha.
  */
-return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit);
+temperature_return_code_temp celsius_to_fahrenheit(double celsius, double *fahrenheit);
 
 /**
  * @brief Converte Celsius para Kelvin.
@@ -45,7 +45,7 @@ return_code_temp_t celsius_to_fahrenheit(double celsius, double *fahrenheit);
  * @param kelvin Ponteiro para armazenar o resultado em Kelvin.
  * @return Código de retorno indicando sucesso ou falha.
  */
-return_code_temp_t celsius_to_kelvin(double celsius, double *kelvin);
+temperature_return_code_temp celsius_to_kelvin(double celsius, double *kelvin);
 
 /**
  * @brief Converte Fahrenheit para Celsius.
@@ -54,7 +54,7 @@ return_code_temp_t celsius_to_kelvin(double celsius, double *kelvin);
  * @param celsius Ponteiro para armazenar o resultado em Celsius.
  * @return Código de retorno indicando sucesso ou falha.
  */
-return_code_temp_t fahrenheit_to_celsius(double fahrenheit, double *celsius);
+temperature_return_code_temp fahrenheit_to_celsius(double fahrenheit, double *celsius);
 
 /**
  * @brief Converte Fahrenheit para Kelvin.
@@ -63,7 +63,7 @@ return_code_temp_t fahrenheit_to_celsius(double fahrenheit, double *celsius);
  * @param kelvin Ponteiro para armazenar o resultado em Kelvin.
  * @return Código de retorno indicando sucesso ou falha.
  */
-return_code_temp_t fahrenheit_to_kelvin(double fahrenheit, double *kelvin);
+temperature_return_code_temp fahrenheit_to_kelvin(double fahrenheit, double *kelvin);
 
 /**
  * @brief Converte Kelvin para Celsius.
@@ -72,7 +72,7 @@ return_code_temp_t fahrenheit_to_kelvin(double fahrenheit, double *kelvin);
  * @param celsius Ponteiro para armazenar o resultado em Celsius.
  * @return Código de retorno indicando sucesso ou falha.
  */
-return_code_temp_t kelvin_to_celsius(double kelvin, double *celsius);
+temperature_return_code_temp kelvin_to_celsius(double kelvin, double *celsius);
 
 /**
  * @brief Converte Kelvin para Fahrenheit.
@@ -81,6 +81,6 @@ return_code_temp_t kelvin_to_celsius(double kelvin, double *celsius);
  * @param fahrenheit Ponteiro para armazenar o resultado em Fahrenheit.
  * @return Código de retorno indicando sucesso ou falha.
  */
-return_code_temp_t kelvin_to_fahrenheit(double kelvin, double *fahrenheit);
+temperature_return_code_temp kelvin_to_fahrenheit(double kelvin, double *fahrenheit);
 
 #endif // TEMPERATURE_H

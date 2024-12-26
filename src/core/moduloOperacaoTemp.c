@@ -180,7 +180,7 @@ void protoOperacoes(int escolha) {
             // Realizar a operação com o valor na entrada.
             double valorEntrada = atof(entrada);
             double valorResultado = 0.0;
-            return_code_temp_t status;
+            temperature_return_code_temp status;
 
             switch (escolha) {
                 case 0:
@@ -202,10 +202,10 @@ void protoOperacoes(int escolha) {
                     status = kelvin_to_fahrenheit(valorEntrada, &valorResultado);
                     break;
                 default:
-                    status = CONVERSION_INVALID_VALUE;
+                    status = TEMPERATURE_CONVERSION_INVALID_VALUE;
             }
 
-            if (status == CONVERSION_OK) {
+            if (status == TEMPERATURE_CONVERSION_OK) {
                 snprintf(resultado, sizeof(resultado), "%.2f", valorResultado);
             } else {
                 snprintf(resultado, sizeof(resultado), "Valor inválido!");

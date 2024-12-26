@@ -104,7 +104,7 @@ void protoOperacoesMassa(int escolha) {
         } else if (tecla == 'd' || tecla == 'D') {
             double valorEntrada = atof(entrada);
             double valorResultado = 0.0;
-            conversion_status_t status;
+            mass_conversion_status status;
 
             switch (escolha) {
                 case 0:
@@ -117,10 +117,10 @@ void protoOperacoesMassa(int escolha) {
                     status = g_to_kg(valorEntrada, &valorResultado);
                     break;
                 default:
-                    status = CONVERSION_INVALID_VALUE;
+                    status = MASS_CONVERSION_INVALID_VALUE;
             }
 
-            if (status == CONVERSION_OK) {
+            if (status == MASS_CONVERSION_OK) {
                 snprintf(resultado, sizeof(resultado), "%.2f", valorResultado);
             } else {
                 snprintf(resultado, sizeof(resultado), "Valor inválido!");
@@ -134,7 +134,7 @@ void protoOperacoesMassa(int escolha) {
     }
 }
 
-void menuProtoMassa() {
+void menuProtoMassa() {//entry point aqui
     char *composicaoMenu[OPERACOES + 1] = {
         "Quilogramas para Gramas",
         "Quilogramas para Toneladas",
