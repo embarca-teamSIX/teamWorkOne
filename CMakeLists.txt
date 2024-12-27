@@ -46,9 +46,9 @@ endif()
 
 # Define o diretório para saída de binários
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/builds)
-
+#se o diretorio n existir cria o diretorio
 file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-
+#mensagem de debug
 message(STATUS "Binários serão gerados em: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 
 # Adiciona o executável principal
