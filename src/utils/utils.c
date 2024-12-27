@@ -26,13 +26,14 @@ void limpaTela()
 }
 char leOpcao() {
     char ch;
-    
+
  #ifdef _WIN32
-    ch = _getch(); // Leitura de tecla sem eco no Windows
+    ch = _getch(); 
+
 #else
     struct termios oldt, newt;
 
-    // Configurar terminal para leitura sem eco no Linux
+ 
     tcgetattr(STDIN_FILENO, &oldt);
     newt = oldt;
     newt.c_lflag &= ~(ICANON | ECHO);
@@ -40,7 +41,6 @@ char leOpcao() {
 
     ch = getchar();
 
-    // Tratamento para sequências de escape (setas direcionais)
     if (ch == '\033') {
         char seq[2];
         read(STDIN_FILENO, seq, 2);
@@ -54,7 +54,7 @@ char leOpcao() {
         }
     }
 
-    // Restaurar configuração do terminal
+
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 #endif
 

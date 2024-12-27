@@ -38,14 +38,14 @@ make
 ```
 5. **Navegar até a pasta de executaveis**
 
-Após compilar basta iniciar o arquivo gerado
+Após compilar basta acessar a pasta alvo da compilação
 ```bash
 cd ../builds
 ``` 
 
-. **Executar o programam**
+6. **Executar o programam**
 
-Após compilar basta iniciar o arquivo gerado
+Iniciar o arquivo gerado
 ```bash
 ./ConversorSS4
 ``` 
