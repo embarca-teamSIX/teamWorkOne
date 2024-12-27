@@ -24,42 +24,39 @@ void limpaTela()
     }
     #endif
 }
- char leOpcao() {
-         char ch;
+char leOpcao() {
+    char ch;
+    
+ #ifdef _WIN32
+    ch = _getch(); // Leitura de tecla sem eco no Windows
+#else
+    struct termios oldt, newt;
 
-    #ifdef SYSTEM_TYPE
-   if(strcmp(SYSTEM_TYPE, "WINDOWS")==0)
-   {
-        ch=_getch();
-   }
-   else{
-        struct termios oldt, newt;
-   
-        tcgetattr(STDIN_FILENO, &oldt);
-        newt = oldt;
-        newt.c_lflag &= ~(ICANON | ECHO);
-        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    // Configurar terminal para leitura sem eco no Linux
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
-        ch = getchar();
+    ch = getchar();
 
-        if (ch == '\033') 
-        {
-            char seq[2];
-            (void)read(STDIN_FILENO, &seq, 2);
-            if (seq[0] == '[') {
-                switch (seq[1]) {
-                    case 'A': ch = 'w'; break;
-                    case 'B': ch = 's'; break;
-                    case 'C': ch = 'd'; break;
-                    case 'D': ch = 'a'; break;
-                }
+    // Tratamento para sequências de escape (setas direcionais)
+    if (ch == '\033') {
+        char seq[2];
+        read(STDIN_FILENO, seq, 2);
+        if (seq[0] == '[') {
+            switch (seq[1]) {
+                case 'A': ch = 'w'; break; // Seta para cima
+                case 'B': ch = 's'; break; // Seta para baixo
+                case 'C': ch = 'd'; break; // Seta para a direita
+                case 'D': ch = 'a'; break; // Seta para a esquerda
             }
         }
+    }
 
-        tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-         }
-#else
-        ch=getchar();
+    // Restaurar configuração do terminal
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 #endif
+
     return ch;
- }
+}
