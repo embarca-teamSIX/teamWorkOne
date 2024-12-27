@@ -29,7 +29,6 @@ char leOpcao() {
 
  #ifdef _WIN32
     ch = _getch(); 
-
 #else
     struct termios oldt, newt;
 
