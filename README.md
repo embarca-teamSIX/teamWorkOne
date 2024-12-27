@@ -36,12 +36,20 @@ Dentro da pasta cmake executar `make` para compilar
 ```bash
 make
 ```
-5. **Executar o programam**
+5. **Navegar até a pasta de executaveis**
+
+Após compilar basta iniciar o arquivo gerado
+```bash
+cd ../builds
+``` 
+
+. **Executar o programam**
 
 Após compilar basta iniciar o arquivo gerado
 ```bash
 ./ConversorSS4
 ``` 
+
 
 ### Estrutura do Projeto
 1. src/: Contém o código-fonte do projeto.
