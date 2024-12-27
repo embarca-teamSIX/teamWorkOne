@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termio.h>
-#include <unistd.h>
+
 
 #include "unidade_de_medida.h" // Cabeçalho com as funções de conversão de volume.
 #include "MODULO_OPERACAO_MEDIDAS.h"
