@@ -15,7 +15,7 @@ Deve-se verificar se:
 git clone https://github.com/embarca-teamSIX/teamWorkOne.git
 ```
 ```bash
-cd TEAMWORKONE
+cd teamWorkOne
 ```
 2. **Criar diretório para build**
 ```bash
