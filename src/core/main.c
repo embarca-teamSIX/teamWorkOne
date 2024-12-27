@@ -144,8 +144,8 @@ void exibeMenu(int indiceParaDestaque, char* menuExibicao[]) {
             printf("\n");
         }
     }
-    printf("\nUse as teclas >>W<< para subir, >>S<< para descer, >>D<< para selecionar.\n");
-    printf("Pressione 'A' para sair.\n");
+    printf("\nUse as teclas >>[W]<< para subir, >>[S]<< para descer, >>[D]<< para selecionar.\n");
+    printf("USE APENAS AS TECLAS INDICADAS\n");
 }
 
 /**
