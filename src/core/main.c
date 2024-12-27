@@ -66,8 +66,8 @@ void telaSaida() {
     }
 
     printf("%*sSee you Space cowboy...\n", (COLUNAS_TELA / 2) - 4, "");
-    sleep(2);
-
+    sleep(5);
+    limpaTela();
     exit(0);
 }
 
