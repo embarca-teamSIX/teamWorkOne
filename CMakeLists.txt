@@ -47,6 +47,10 @@ endif()
 # Define o diretório para saída de binários
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/builds)
 
+file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+
+message(STATUS "Binários serão gerados em: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+
 # Adiciona o executável principal
 add_executable(
     ConversorSS4
