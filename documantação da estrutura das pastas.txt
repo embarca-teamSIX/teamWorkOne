@@ -1,17 +1,34 @@
 -->>uso e aplicação das libs pra esse projeto<<---
+
+
     Estrutura do repositorio
         raiz/
             |  -> src/
             |       |->core/
-            |       |      |->/*fica aqui o arquivo principal da execução,*/
+            |       |      /*fica aqui o arquivo principal da execução e arquivos de interfaçe*/
             |       |->modules/
-            |               |->/*a serem postos aqui os modulos para compilação contendo as funcs*/
+            |       |       /*a serem postos aqui os modulos para compilação contendo as funcs*/
+            |       |
+            |       |->utils/
+            |       |       /*arquivo de implementação de função comum a todos os modulos*/   
+            |
+            |
             | 
             |   -> includes/
-            |           |->/*a serem postos aqui os arquivos de bibliotecas .h*/
+            |           /*os arquivos de bibliotecas .h*/
+            |
+            |
+            |
             |    -> build/
-            |           |->/*target folder para compilação do cmake*/
-            |    ->cmake
+            |           /*target folder para compilação do cmake*/
+            |
+            |    ->builds/ 
+            |           /*pasta criada pelo cmake para onde vão os executaveis gerados*/
+            |
+            |
+            |    ->CmMakeList.txt
+            |    ->toochain-linux.cmake
+            |    ->toolchain-windows.cmake
             |    ->.gitignore
             |    ->license
 
