@@ -6,7 +6,7 @@ Projeto Conversor de Unidades
 Deve-se verificar se:
 - **CMake** (versão 3.10 ou posterior)
 - Compilador C (GCC)
-- Linux
+- Sistema Operacional Linux ou Windows
 
 ### Instruções de instalação:
 
