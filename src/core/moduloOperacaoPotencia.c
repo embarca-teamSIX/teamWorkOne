@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termio.h>
-#include <unistd.h>
+
 
 #include "conversor_unid_potencia.h" 
 #include "MODULO_OPERACAO_POTENCIA.h"

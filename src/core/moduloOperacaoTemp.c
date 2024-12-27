@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termio.h>
-#include <unistd.h>
 
 #include "temperature.h" // Cabeçalho com as funções de conversão de temperatura.
 #include "MODULO_OPERACAO_TEMP.h"
